@@ -1,0 +1,6 @@
+[submodule "Dolores-Backend"]
+	path = Dolores-Backend
+	url = git@github.com:FLW-TUDO/Dolores-Backend.git
+[submodule "Dolores-Frontend"]
+	path = Dolores-Frontend
+	url = git@github.com:FLW-TUDO/Dolores-Frontend.git
