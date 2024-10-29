@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this template, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>ADMIN</title>
+    </h:head>
+    <h:body>
+        
+        <h:form>
+            <p:button outcome="allPlayers" value="Alle Spieler" />
+
+            <p:button outcome="gamesOverview" value="Übersicht aktiver Spiele" />
+
+            <p:button outcome="generateAccounts" value="Accounts generieren" />
+            <br/>
+            <br/>
+            <p:commandButton value="Logout" action="#{userManagedBean.logout}"/>
+            <br/>
+            <b>Version:1.4.2 (11.11.19)</b><br/>
+             - Nachrichten werden nun in der richtigen Reihenfolge angezeigt<br/>
+             - Kapazitätsverteilung im Lager nun nur noch eingebbar<br/>
+             - Es wurde ein Fehler bei zurück gesetzten Runden behoben<br/>
+            <br/>
+            <b>Version:1.4 (07.10.19)</b><br/>
+             - Runde Zurück nun funktionsfähig<br/>
+             - Layout für Statistik-Ansichten verbessert<br/>
+            <br/>
+            <br/>
+            <b>Version:1.3 (18.01.19)</b><br/>
+             - Datenbank löscht nun alle Einträge, falls ein Spiel gelöscht wird<br/>
+             - Performance verbessert<br/>
+             - Export-Ansicht verändert<br/>
+             - Neue Nachrichten werden nun oben angezeigt<br/>
+            <br/>
+            <br/>
+            <b>Version:1.2 (17.01.18)</b><br/>
+             - Speicherproblem gelöst, nur noch CurrentGame keine Liste von GameInfos mehr<br/>
+             - Im Adminbereich und beim Laden eines Spiels wird die Rundennummer nicht mehr angezeigt<br/>
+            <br/>
+            <br/>
+            <b>Version:1.1 (06.12.2017)</b><br/>
+             - Leiharbeiter sind nun verfügbar<br/>
+             - Löschen optimiert (es werden jedoch immernoch gelöschte Spiele angezeigt)<br/>
+             - Mehr "Back"-Buttons eingefügt<br/>
+             - Passwörter sichtbar im Admin-Bereich<br/>
+             - Neue Dialoge eingefügt<br/>
+             - Spieler löschen nun funktionsfähig<br/>
+             - Runden rückgängig machen nun funktionsfähig<br/>
+            <br/>
+            <br/>
+            <b>Version:1.0.1a (19.04.2017)</b><br/>
+             - Mehr "Back"-Buttons im Adminmenü<br/>
+             - bessere Beschriftung<br/>
+            <br/>
+            <br/>
+            <b>Version:1.0.1 (19.04.2017)</b><br/>
+             - Spieler löschen<br/>
+             - alle Spiele eines Spielers löschen<br/>
+             - einzelne Spiele löschen<br/>
+             - überall "Back"-Buttons im Adminmenü<br/>
+             - Versionierung auf der Startseite im Adminmenü<br/>
+             - Erstellung von weniger als 10 Spieler auf einmal<br/>
+             - Fehler in der Statistik behoben<br/>
+        </h:form>
+    </h:body>
+</html>

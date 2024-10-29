@@ -1,0 +1,85 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <body>
+        <ui:composition template="./../templates/statTemplate.xhtml">
+            <ui:define name="contentMain">
+
+                <f:view locale="#{languageBean.locale}">
+
+                    <h:form id="form">  
+
+                        <p:graphicImage value="./../../resources/img/statistik#{ImagePm.localeStringToLowercase}" style="border-top-right-radius: 4px;
+                                        width: 849px;" />
+                        
+                        <p:button value="#{msg['main.btnCash']}" outcome="stats/cash.xhtml?faces-redirect=true"/>
+                        <p:button value="#{msg['main.btnInc']}" outcome="stats/incomingStats.xhtml?faces-redirect=true"/>
+                        <p:button value="#{msg['main.btnStorage']}" outcome="stats/storageStats.xhtml?faces-redirect=true"/>
+                        <p:button value="#{msg['main.btnOut']}" outcome="stats/outgoingStats.xhtml?faces-redirect=true"/>
+                        <p:button value="#{msg['main.btnStat']}" outcome="statistics.xhtml?faces-redirect=true" />
+                        <br/>
+                        <br/>
+                        <br/>
+
+
+                        <p:growl id="msgs" showDetail="true" />       
+                        <p:fieldset styleClass="oneStatistics">
+                            <div id="selectionFrame" >
+                                <p:panelGrid columns="2" >  
+                                    <h:selectOneMenu  id="category" value="#{statPM.category}">  
+                                        <f:selectItem itemLabel="#{msg['statistics.choose']}" itemValue="" />  
+                                        <f:selectItems value="#{statPM.categories}"/>  
+                                        <p:ajax update="charts"  
+                                                listener="#{statPM.handleSelectionChange}" />  
+                                    </h:selectOneMenu>  
+
+                                    <h:selectOneListbox size="10" id="charts" value="#{statPM.chart}" onchange="#{statPM.handleSelectionChange()}" >  
+
+                                        <f:selectItems value="#{statPM.charts}" />  
+                                        <p:ajax update="charts, linear, msgs"  
+                                                listener="#{statPM.handleSelectionChange}" />  
+                                    </h:selectOneListbox>  
+                                </p:panelGrid>  
+
+
+                            </div>
+                        </p:fieldset> 
+                        <br/>  
+
+
+                        <p:fieldset styleClass="one">
+
+                            <div id="chartFrame">
+
+
+                                <p:lineChart seriesColors="E95B2A" id="linear" value="#{statPM.linearModel}" legendPosition="se"  
+                                             minY="0" minX="1" style="height:400px; width: 700px; margin-left: 50px; margin-bottom: 20px;" widgetVar="chart"/>  
+
+                            </div>
+
+                        </p:fieldset>
+                        <!--  -->
+
+                        <p:commandButton type="button" value="#{msg['statistics.exportAs']}" icon="ui-icon-extlink" onclick="exportChart()"/>
+
+                        <p:dialog widgetVar="dlg" showEffect="fade" modal="true" header="#{msg['statistics.exportAs']}">
+                            <p:outputPanel id="output" layout="block" />
+                        </p:dialog>
+
+
+
+                    </h:form>  
+                </f:view>
+
+            </ui:define>
+
+
+        </ui:composition>
+
+    </body>
+</html>

@@ -1,0 +1,84 @@
+<?xml version='1.0' encoding='UTF-8'?>
+
+<!-- =========== FULL CONFIGURATION FILE ================================== -->
+
+<faces-config version="2.1"
+              xmlns="http://java.sun.com/xml/ns/javaee"
+              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+              xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-facesconfig_2_1.xsd">
+    <managed-bean>
+        <managed-bean-name>date</managed-bean-name>
+        <managed-bean-class>java.util.Date</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+    </managed-bean>
+
+    
+    
+    <application>
+        <locale-config>
+            <default-locale>de-DE</default-locale>
+            <supported-locale>en</supported-locale>
+        </locale-config>
+        <resource-bundle>
+            <base-name>flw.language.language</base-name>
+            <var>msg</var>
+        </resource-bundle>
+    </application>
+    
+    <navigation-rule>
+        <from-view-id>/index.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>start</from-outcome>
+            <to-view-id>/createGame.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    <navigation-rule>
+        <from-view-id>/tech/conveyor.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>techPage</from-outcome>
+            <to-view-id>/techPage.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    <navigation-rule>
+        <from-view-id>/order/orderInfo.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>orderForm</from-outcome>
+            <to-view-id>/order/orderForm.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    <navigation-rule>
+        <from-view-id>/employee/employee.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>employeePage</from-outcome>
+            <to-view-id>/employeePage.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    <navigation-rule>
+        <from-view-id>/tech/it.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>techPage</from-outcome>
+            <to-view-id>/techPage.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    <navigation-rule>
+        <from-view-id>/tech/help.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>techPage</from-outcome>
+            <to-view-id>/techPage.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    <navigation-rule>
+        <from-view-id>/tech/result.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>techPage</from-outcome>
+            <to-view-id>/techPage.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    <navigation-rule>
+        <from-view-id>/orgaPage.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>sto</from-outcome>
+            <to-view-id>/orga/storage.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+</faces-config>

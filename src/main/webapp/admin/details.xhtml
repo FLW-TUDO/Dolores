@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this template, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core">
+    <h:head>
+
+        <script>
+
+
+
+            function ext() {
+
+
+
+                this.cfg.axes.yaxis.tickOptions = {
+                    formatString: '%d'
+                };
+                this.cfg.axes.xaxis.tickOptions = {
+                    formatString: '%d'
+                };
+
+
+                this.cfg.axes.xaxis.tickInterval = 1;
+                this.cfg.axes.yaxis.show = false;
+            }
+        </script>
+
+        <title>Admin - Details</title>
+    </h:head>
+    <h:body>
+
+
+        <h:form>
+
+            <p:poll interval="10" update="details, details1" />  
+
+
+            <p:panelGrid id="details" >
+                <p:row>
+
+
+                    <p:column>
+                        <!--<f:facet name="header">
+                            <h:outputText value="Allgemiene Informationen"/>
+                        </f:facet>-->
+
+                        <br/>
+
+                        <p:panelGrid columns="2">
+                            <f:facet name="header">
+                                <h:outputText value="Allgemeine Informationen"/>
+                            </f:facet>
+                            <h:outputLabel value="Name des Unternehmens: " for="corpName" />
+                            <h:outputText value="#{admPM.storedInfo.corpName}"/>
+                            <h:outputLabel value="Spieler Name: " for="playerName" />
+                            <h:outputText value="#{admPM.storedInfo.playerName}"/>
+                            <h:outputLabel value="Straße: " for="street" />
+                            <h:outputText value="#{admPM.storedInfo.street}"/>
+                            <h:outputLabel value="Ort: " for="location" />
+                            <h:outputText value="#{admPM.storedInfo.location}"/>
+
+                        </p:panelGrid>
+
+
+                        <br/>
+
+
+                        <p:panelGrid columns="2"> 
+                            <f:facet name="header">
+                                <h:outputText value="Kennzahlen"/>
+                            </f:facet>
+                            <h:outputLabel value="Runde:  " for="" />
+                            <h:outputText value="#{admPM.storedInfo.currentState.roundNumber}" />
+                            <h:outputLabel value="Kundenzufriedenheit:  " for="" />
+                            <h:outputText value="#{admPM.storedInfo.currentState.getValue('satisfaction')}" />
+                            <h:outputLabel value="Kontostand: " for="" />
+                            <h:outputText value="#{admPM.storedInfo.currentState.getValue('accountbalance')}" />
+
+                        </p:panelGrid>
+
+                        <br/>
+                    </p:column>
+
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="Kontostand"/>
+                        </f:facet>
+                        <p:lineChart seriesColors="E95B2A" id="linear" value="#{admPM.getBalance(admPM.storedInfo)}" 
+                                     extender="ext" minY="0" minX="1" style="height:250px; width: 500px" />  
+                        
+                    </p:column>
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="Kundenzufriedenheit"/>
+                        </f:facet>
+                        <p:lineChart seriesColors="E95B2A"  value="#{admPM.getSatisfaction(admPM.storedInfo)}"  
+                                     extender="ext" minY="0" minX="1" style="height:250px; width: 500px" />  
+                    </p:column>
+                    
+                </p:row>
+                </p:panelGrid>
+            <br/>
+                <p:panelGrid id="details1" >
+                
+                <p:row>
+                    <p:column>
+                        <p:lineChart  value="#{admPM.getStorageInfoChart1(admPM.storedInfo)}"  
+                                      extender="ext" minY="0" minX="1" style="height:300px; width: 300px; float: left;" seriesColors="E95B2A"/> 
+                    </p:column>
+                    <p:column>
+                        <p:lineChart value="#{admPM.getStorageInfoChart2(admPM.storedInfo)}"  
+                                      extender="ext" minY="0" minX="1" style="height:300px; width: 300px;float: left" seriesColors="E95B2A"/> 
+                    </p:column>
+                    <p:column>
+                        <br/>
+                        <p:lineChart value="#{admPM.getStorageInfoChart3(admPM.storedInfo)}" 
+                                      extender="ext" minY="0" minX="1" style="height:300px; width: 300px;float: left" seriesColors="E95B2A"/> 
+                    </p:column>
+                    <p:column>
+                        <p:lineChart  value="#{admPM.getStorageInfoChart4(admPM.storedInfo)}"  
+                                      extender="ext" minY="0" minX="1" style="height:300px; width: 300px;float: left" seriesColors="E95B2A"/> 
+                    </p:column>
+                </p:row>
+            </p:panelGrid>
+        </h:form>
+
+
+    </h:body>
+</html>

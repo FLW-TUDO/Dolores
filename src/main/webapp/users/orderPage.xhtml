@@ -1,0 +1,238 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <body>
+        <!--<ui:composition template="./../templates/mainTemplate.xhtml">-->
+        <ui:composition template="./../templates/folderTemplate.xhtml" >
+            <!--War vorher schon hier: <ui:composition template="./../templates/menuTemplate.xhtml">-->
+
+
+
+            <ui:define name="content">
+
+                <p:graphicImage value="./../../resources/img/bestellwesen#{ImagePm.localeStringToLowercase}" styleClass="headerImg" />
+
+
+                <p:fieldset  styleClass="two" style="padding-bottom: 95px;">
+                    <h:outputText value="#{msg['order.fsBestand']}" styleClass="hh1" />
+                    <p:panelGrid columns="3" styleClass="oneContent">
+
+
+
+
+                        <h:outputText  value="#{msg['job.article']}" styleClass="hh3"/>
+
+
+                        <h:outputText  value="#{msg['order.otAnzahl']} " styleClass="hh3"/>
+
+
+                        <h:outputText  value="#{msg['order.value']}" styleClass="hh3"/>
+
+
+
+                        <h:outputLabel value="#{msg['global.auspuff']}"/>
+
+                        <h:outputLabel value="#{orderPM.showStocks(100101)}"/>
+                        <h:outputLabel value="#{orderPM.showValue(100101)}">
+                            <f:convertNumber type="currency"  maxFractionDigits="0" currencySymbol="€" locale="#{languageBean.language}"/>
+                        </h:outputLabel>
+
+                        <h:outputLabel value="#{msg['global.bremse']}"/>
+
+
+                        <h:outputLabel value="#{orderPM.showStocks(100102)}"/>
+                        <h:outputLabel value="#{orderPM.showValue(100102)}">
+                            <f:convertNumber type="currency"  maxFractionDigits="0" currencySymbol="€" locale="#{languageBean.language}"/>
+                        </h:outputLabel>
+
+                        <h:outputLabel value="#{msg['global.leuchte']}"/>
+
+
+                        <h:outputLabel value="#{orderPM.showStocks(100103)}"/>
+                        <h:outputLabel value="#{orderPM.showValue(100103)}">
+                            <f:convertNumber type="currency"  maxFractionDigits="0" currencySymbol="€" locale="#{languageBean.language}"/>
+                        </h:outputLabel>
+
+                        <h:outputLabel value="#{msg['global.daempfer']}"/>
+
+
+                        <h:outputLabel value="#{orderPM.showStocks(100104)}"/>
+                        <h:outputLabel value="#{orderPM.showValue(100104)}">
+                            <f:convertNumber type="currency"  maxFractionDigits="0" currencySymbol="€" locale="#{languageBean.language}"/>
+                        </h:outputLabel>
+
+
+                    </p:panelGrid>
+
+                </p:fieldset>
+
+
+
+                <p:fieldset styleClass="two">
+                    
+                    <h:outputText value="#{msg['order.fsOpenOrder']}" styleClass="hh1" />
+                    <p:scrollPanel style="height: 190px;margin-bottom: 8px;
+                                   padding-bottom: 14px;" styleClass="oneContent" >
+                        <f:view>
+
+
+
+                            <h:form>
+
+                                <p:dataTable value="#{orderPM.openOrders}" var="item" style="width: 380px;">
+
+
+
+                                    <p:column>
+                                        <f:facet name="header">
+                                            <h:outputText value="#{msg['global.artikel']}"/>
+                                        </f:facet>
+
+                                        <h:outputText value="#{msg[item.articleDynamics.name]}"/>
+                                    </p:column>
+
+                                    <p:column>
+                                        <f:facet name="header">
+                                            <h:outputText value="#{msg['order.orderPerNeu1']} &#10; #{msg['order.orderPerNeu2']}" style="white-space:pre;"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.orderPeriod}"/>
+                                    </p:column>
+
+
+                                    <p:column>
+                                        <f:facet name="header">
+                                            <h:outputText value="#{msg['global.pallets']}"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.orderAmount}"/>
+                                    </p:column>
+                                    <p:column>
+                                        <f:facet name="header">
+                                            <h:outputText value="#{msg['order.date1']} &#10; #{msg['order.date2']}" style="white-space:pre;"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.deliveryWish}"/>
+                                    </p:column>
+                                </p:dataTable>
+
+                                <br/>
+                                <br/>
+
+                            </h:form>
+                        </f:view>
+
+
+
+                    </p:scrollPanel>
+                </p:fieldset>
+
+
+                
+
+                <p:fieldset styleClass="two">
+
+                    
+                    <h:outputText value="#{msg['order.hThisPerido']}" styleClass="hh1"/>
+                    <p:panelGrid columns="3" styleClass="oneContent" >
+                        <h:outputLabel value=" "/>
+                        <h:outputLabel value="#{msg['global.pallets']}" styleClass="hh3"/>
+                        <h:outputLabel value="#{msg['job.wert']}" styleClass="hh3"/>
+
+                        <h:outputLabel value="#{msg['global.auspuff']}"/>
+                        <h:outputLabel value="#{orderPM.auspuffCount}"/>
+                        <h:outputLabel value="#{orderPM.auspuffValue}">
+                            <f:convertNumber type="currency"  maxFractionDigits="0" currencySymbol="€" locale="#{languageBean.language}"/>
+                        </h:outputLabel>
+
+                        <h:outputLabel value="#{msg['global.bremse']} "/>
+                        <h:outputLabel value=" #{orderPM.bremsenCount}"/>
+                        <h:outputLabel value="#{orderPM.bremsenValue}">
+                            <f:convertNumber type="currency"  maxFractionDigits="0" currencySymbol="€" locale="#{languageBean.language}"/>
+                        </h:outputLabel>
+
+                        <h:outputLabel value="#{msg['global.leuchte']}"/>
+                        <h:outputLabel value="#{orderPM.rückCount}"/>
+                        <h:outputLabel value="#{orderPM.rückValue}">
+                            <f:convertNumber type="currency"  maxFractionDigits="0" currencySymbol="€" locale="#{languageBean.language}"/>
+                        </h:outputLabel>
+
+                        <h:outputLabel value="#{msg['global.daempfer']}"/>
+                        <h:outputLabel value="#{orderPM.stossCount}"/>
+                        <h:outputLabel value="#{orderPM.stossValue}">
+                            <f:convertNumber type="currency"  maxFractionDigits="0" currencySymbol="€" locale="#{languageBean.language}"/>
+                        </h:outputLabel>
+
+                        <h:outputLabel value="#{msg['order.sum']}"/>
+                        <h:outputLabel value="#{orderPM.overallCount}"/>
+                        <h:outputLabel value="#{orderPM.overallValue}">
+                            <f:convertNumber type="currency"  maxFractionDigits="0" currencySymbol="€" locale="#{languageBean.language}"/>
+                        </h:outputLabel>
+                    </p:panelGrid>
+
+
+                </p:fieldset>
+
+
+                <p:fieldset styleClass="two">
+
+                    <h:outputText value="#{msg['order.hLastPeriod']}" styleClass="hh1"/>
+
+
+                    <p:panelGrid columns="3" style="" styleClass="oneContent">
+                        <h:outputLabel value=" "/>
+                        <h:outputLabel value="#{msg['global.pallets']}" styleClass="hh3"/>
+                        <h:outputLabel value="#{msg['job.wert']}" styleClass="hh3"/>
+
+                        <h:outputLabel value="#{msg['global.auspuff']}"/>
+                        <h:outputLabel value="#{orderPM.auspuffCountR}"/>
+                        <h:outputLabel value="#{orderPM.auspuffValueR}">
+                            <f:convertNumber type="currency"  maxFractionDigits="0" currencySymbol="€" locale="#{languageBean.language}"/>
+                        </h:outputLabel>
+
+                        <h:outputLabel value="#{msg['global.bremse']} "/>
+                        <h:outputLabel value="#{orderPM.bremsenCountR}"/>
+                        <h:outputLabel value="#{orderPM.bremsenValueR}">
+                            <f:convertNumber type="currency"  maxFractionDigits="0" currencySymbol="€" locale="#{languageBean.language}"/>
+                        </h:outputLabel>
+
+                        <h:outputLabel value="#{msg['global.leuchte']}"/>
+                        <h:outputLabel value="#{orderPM.rückCountR}"/>
+                        <h:outputLabel value="#{orderPM.rückValueR}">
+                            <f:convertNumber type="currency"  maxFractionDigits="0" currencySymbol="€" locale="#{languageBean.language}"/>
+                        </h:outputLabel>
+
+                        <h:outputLabel value="#{msg['global.daempfer']}"/>
+                        <h:outputLabel value="#{orderPM.stossCountR}"/>
+                        <h:outputLabel value="#{orderPM.stossValueR}">
+                            <f:convertNumber type="currency"  maxFractionDigits="0" currencySymbol="€" locale="#{languageBean.language}"/>
+                        </h:outputLabel>
+
+                        <h:outputLabel value="#{msg['order.sum']}"/>
+                        <h:outputLabel value="#{orderPM.overallCountR}"/>
+                        <h:outputLabel value="#{orderPM.overallValueR}">
+                            <f:convertNumber type="currency"  maxFractionDigits="0" currencySymbol="€" locale="#{languageBean.language}"/>
+                        </h:outputLabel>
+                    </p:panelGrid>
+                </p:fieldset>
+
+
+
+                <br/>
+
+
+                <br/>
+                <br/>
+
+            </ui:define>
+
+
+
+        </ui:composition>
+
+    </body>
+</html>
+
+

@@ -1,0 +1,65 @@
+{"flw.business.statistics.PalletStatistics": {
+		"roundNumber": 1,
+		"new_arrived_pallet_count_overall": 296,
+		"new_arrived_pallet_count_100101": 110,
+        "new_arrived_pallet_count_100102": 120,
+        "new_arrived_pallet_count_100103": 66,
+        "new_arrived_pallet_count_100104": 0,
+        
+		"pallets_transported_en": 680,
+		"pallets_transported_wv": 296,
+        "pallets_transported_la": 296,
+        "pallets_transported_la_in": 296,
+        "pallets_transported_la_out": 0,
+        "pallets_transported_wk": 0,
+		"pallets_transported_ve": 0,
+        
+        "not_transported_pallets_en": 0,
+		"not_transported_pallets_wv": 384,
+        "not_transported_pallets_la": 0,
+        "not_transported_pallets_la_in": 0,
+        "not_transported_pallets_la_out": 0,
+        "not_transported_pallets_wk": 0,
+		"not_transported_pallets_ve": 0,
+        
+		"pallets_with_error_0": 0,
+        "pallets_with_error_1": 0,
+        "pallets_with_error_2": 0,
+        "pallets_with_error_3": 0,
+        "pallets_with_error_4": 0,
+        "pallets_with_error_5": 0,
+        "pallets_with_error_6": 0,
+	 
+        "stock_value_100101": 7150,
+        "stock_value_100102": 8640,
+        "stock_value_100103": 24300,
+        "stock_value_100104": 63600,
+        
+        
+		
+		"estimated_pallets_en": 0,
+        "estimated_pallets_la": 0,
+        "estimated_pallets_la_in": 0,
+        "estimated_pallets_la_out": 0,
+        "estimated_pallets_ve": 0,
+        "estimated_pallets_wk": 0,
+        "estimated_pallets_wv": 0,
+        
+        "prob_damage": 0,
+        "prob_transport_demage_en_with_les": 0,
+        "prob_transport_demage_en_without_les": 0,
+        "prob_transport_demage_la_with_les": 0,
+        "prob_transport_demage_la_without_les": 0,
+        "prob_transport_demage_ve_with_les": 0,
+        "prob_transport_demage_ve_without_les": 0,
+        "prob_wrong_delivery": 0,
+        "prob_wrong_retrieval": 0,
+        
+        
+        "true_speed_en_wousd": 4.3650000000000002,
+        "true_speed_en_wusd": 4.8499999999999996,
+        "true_speed_la_wousd": 3.0600000000000005,
+        "true_speed_la_wusd": 3.4000000000000004,
+        "true_speed_ve_wousd": 2.8800000000000003,
+        "true_speed_ve_wusd": 3.2000000000000002
+    }}

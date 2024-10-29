@@ -1,0 +1,320 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <body>
+        <ui:composition template="/./templates/folderTemplate.xhtml">
+            <ui:define name="content">
+                <f:view>
+                    <p:graphicImage value="./../../resources/img/einsatzplanung#{ImagePm.localeStringToLowercase}" styleClass="headerImg" />
+
+                    <h:form id="formId">
+
+
+                        <p:growl id="msg" />  
+
+                        <p:confirmDialog id="fpId" header="#{msg['employee.dlgQMHead']}" widgetVar="fp" hideEffect="bounce">
+
+                            <f:facet name="message">
+                                <p> #{msg['employee.dlgQM1']} #{employee.clickedDynamics.employee.firstName} #{employee.clickedDynamics.employee.lastName} 
+                                    #{msg['employee.dlgFp2']}</p>
+                                <p>#{msg['employee.dlgFm3']}</p>
+                            </f:facet>
+                            <p:commandButton value="#{msg['global.dlgSubmit']}" action="#{employee.setFP()}"
+                                             oncomplete="fp.hide()" update=":formId:tableId"/>
+
+                            <p:commandButton value="#{msg['global.dlgCancel']}" onclick="fp.hide();" type="button" />
+
+                        </p:confirmDialog>
+
+                        <p:confirmDialog id="secId" header="#{msg['employee.dlgQMHead']}" widgetVar="sec">
+
+                            <f:facet name="message">
+                                <p> #{msg['employee.dlgQM1']} #{employee.clickedDynamics.employee.firstName} #{employee.clickedDynamics.employee.lastName} 
+                                    #{msg['employee.dlgSec2']}</p>
+                                <p>#{msg['employee.dlgSec3']}</p>
+                            </f:facet>
+                            <p:commandButton value="#{msg['global.dlgSubmit']}" action="#{employee.setSec()}"
+                                             oncomplete="sec.hide()" update=":formId:tableId"/>
+
+                            <p:commandButton value="#{msg['global.dlgCancel']}" onclick="sec.hide();" type="button" />
+
+                        </p:confirmDialog>
+
+                        <p:confirmDialog id="qmId" header="#{msg['employee.dlgQMHead']}" widgetVar="qm">
+
+                            <f:facet name="message">
+                                <p> #{msg['employee.dlgQM1']} #{employee.clickedDynamics.employee.firstName} #{employee.clickedDynamics.employee.lastName} 
+                                    #{msg['employee.dlgSeminar2']}</p>
+                                <p>#{msg['employee.dlgFm3']}</p>
+                            </f:facet>
+                            <p:commandButton value="#{msg['global.dlgSubmit']}" action="#{employee.setQM()}"
+                                             oncomplete="qm.hide()" update=":formId:tableId"/>
+
+                            <p:commandButton value="#{msg['global.dlgCancel']}" onclick="qm.hide();" type="button" />
+
+                        </p:confirmDialog>
+
+
+
+
+                        <p:fieldset styleClass="one">
+
+
+                            <h:outputText value="#{msg['employee.ep']}" styleClass="hh1"/>
+
+                            <!-- <p:scrollPanel styleClass="oneContent" style="height: 480px;"> -->
+
+                            <p:dataTable id="tableId" value="#{employee.currentDynamics}" var="item" styleClass="oneContent">
+                                <p:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="#{msg['order.name']}"/>
+                                    </f:facet>
+
+                                    <h:outputText value="#{item.firstName} "/>
+                                    <h:outputText value="#{item.lastName}"/>
+                                </p:column>
+
+
+
+
+                                <p:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="#{msg['employee.fp']}"/>
+                                    </f:facet>
+
+                                    <p:commandButton
+                                        update=":formId:fpId"
+                                        action="#{employee.setClickedDynamics(item)}" 
+                                        value="#{msg['employee.schulen']}" 
+                                        oncomplete="fp.show()"  
+                                        rendered="#{!item.hasForkliftPermit() and !item.hasForkliftPermitInProgress()}">
+                                        <f:setPropertyActionListener target="#{employee.clickedDynamics}" value="#{item}" />
+                                    </p:commandButton>
+
+
+                                    <h:outputText value="#{msg['global.yes']}" rendered="#{item.hasForkliftPermit()}" />
+                                    <h:outputText value="#{msg['global.inProgress']}" rendered="#{item.hasForkliftPermitInProgress() and !item.hasForkliftPermit()}" />
+                                </p:column>
+                                <p:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="#{msg['employee.sec1']} &#10; #{msg['employee.sec2']}" style="white-space:pre;"/>
+                                    </f:facet>
+
+                                    <h:outputText value="#{msg['global.yes']}" rendered="#{item.hasSecurityTraining()}" />
+
+                                    <p:commandButton 
+                                        update=":formId:secId"
+                                        action="#{employee.setClickedDynamics(item)}" 
+                                        value="#{msg['employee.schulen']}" 
+                                        oncomplete="sec.show()"  
+                                        rendered="#{!item.hasSecurityTraining() and !item.hasSecurityTrainingInProgress()}">
+                                        <f:setPropertyActionListener target="#{employee.clickedDynamics}" value="#{item}" />
+                                    </p:commandButton>
+                                    <h:outputText value="#{msg['global.inProgress']}" rendered="#{item.hasSecurityTrainingInProgress() and !item.hasSecurityTraining()}" />
+
+                                </p:column>
+                                <p:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="#{msg['employee.qm']}"/>
+                                    </f:facet>
+
+
+                                    <h:outputText value="#{msg['global.yes']}" rendered="#{item.hasQMSeminar()}" />
+
+                                    <p:commandButton 
+                                        update=":formId:qmId"
+                                        action="#{employee.setClickedDynamics(item)}" 
+                                        value="#{msg['employee.schulen']}" 
+                                        oncomplete="qm.show()"  
+                                        rendered="#{!item.hasQMSeminar() and !item.hasQMSeminarInProgress()}">
+                                        <f:setPropertyActionListener target="#{employee.clickedDynamics}" value="#{item}" />
+                                    </p:commandButton>
+
+
+                                    <h:outputText value="#{msg['global.inProgress']}" rendered="#{item.hasQMSeminarInProgress() and !item.hasQMSeminar()}" />
+                                </p:column>
+
+                                <p:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="#{msg['employee.motivation1']} &#10; #{msg['employee.motivation2']}" style="white-space:pre;"/>
+                                    </f:facet>
+                                    <h:outputText value="#{item.getMotivationPercentageAsInt()}">
+                                        <f:convertNumber minFractionDigits="2" maxFractionDigits="2"/>
+                                    </h:outputText>
+                                </p:column>
+                                <p:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="#{msg['global.prozess']}"/>
+                                    </f:facet>
+
+
+                                    <p:selectOneMenu value="#{item.process}">
+                                        <f:selectItem itemValue="0" itemLabel="#{msg['global.en']}" />
+                                        <f:selectItem itemValue="1" itemLabel="#{msg['global.wv']}" />
+                                        <f:selectItem itemValue="2" itemLabel="#{msg['global.la']}" />
+                                        <f:selectItem itemValue="3" itemLabel="#{msg['global.wk']}" />
+                                        <f:selectItem itemValue="4" itemLabel="#{msg['global.ve']}" />
+                                        <p:ajax update=":formId:msg, :formId:worktime"
+                                                listener="#{employee.ajaxUpdateEmployeeDynamics()}" />  
+                                    </p:selectOneMenu>
+                                </p:column>
+                                <p:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="#{msg['employee.wage']}"/>
+                                    </f:facet>
+                                    <h:outputText id="salary" value="#{item.salary} €" title="Salary" />
+                                </p:column>
+
+                            </p:dataTable>
+
+                            <!-- </p:scrollPanel> -->
+                            <br/>
+
+
+                        </p:fieldset>
+                        <p:fieldset  styleClass="two" style="float:left;" id="worktime">
+
+                            <h:outputText styleClass="hh1" value="#{msg['employee.worktime']}" />
+
+                            <br/>
+                            <br/>
+
+                            <h:outputLabel value="#{msg['employee.lastPeriod']}" styleClass="hh2"/>
+
+                            <br/><br/>
+                            <p:panelGrid columns="4" style="oneContent">
+                                <h:outputText value="#{msg['employee.einsatzgebiet']}" styleClass="hh3"/>
+                                <h:outputText value="#{msg['employee.auslastung']}" styleClass="hh3"/>
+                                <h:outputText value="#{msg['employee.anzMa']}  &#10; #{msg['employee.ovt3']}" styleClass="hh3"/>
+                                <h:outputText value="#{msg['employee.ovt1']} &#10; #{msg['employee.ovt2']}" style="white-space:pre;" styleClass="hh3"/>
+
+
+                                <h:outputText value="#{msg['global.en']}"/>
+                                <h:outputText  value="#{gameInfoPM.employeeWorkload[0]}">
+                                    <f:convertNumber minFractionDigits="2" maxFractionDigits="2"/>
+                                </h:outputText>
+                                <h:outputLabel value="#{gameInfoPM.employeeCount[0]}"/>
+                                <p:selectOneMenu value="#{employee.employeeOvertimeEN}">
+                                    <p:ajax update=":formId:msg"
+                                            listener="#{employee.ajaxEmployeeOvtEN}" />  
+                                    <f:selectItem itemValue="0.en" itemLabel="0" />
+                                    <f:selectItem itemValue="1.en" itemLabel="1" />
+                                    <f:selectItem itemValue="2.en" itemLabel="2" />
+                                    <f:selectItem itemValue="3.en" itemLabel="3" />
+                                </p:selectOneMenu>
+
+
+                                <h:outputText value="#{msg['global.wv']}"/>
+                                <h:outputText value="#{gameInfoPM.employeeWorkload[1]}">
+                                    <f:convertNumber minFractionDigits="2" maxFractionDigits="2"/>
+                                </h:outputText>
+                                <h:outputLabel value="#{gameInfoPM.employeeCount[1]}"/>
+                                <p:selectOneMenu value="#{employee.employeeOvertimeWV}">
+                                    <p:ajax update=":formId:msg"
+                                            listener="#{employee.ajaxEmployeeOvtWV}" /> 
+                                    <f:selectItem itemValue="0.wv" itemLabel="0" />
+                                    <f:selectItem itemValue="1.wv" itemLabel="1" />
+                                    <f:selectItem itemValue="2.wv" itemLabel="2" />
+                                    <f:selectItem itemValue="3.wv" itemLabel="3" />
+                                </p:selectOneMenu>
+
+
+                                <h:outputText value="#{msg['global.la']}"/>
+                                <h:outputText value="#{gameInfoPM.employeeWorkload[2]}">
+                                    <f:convertNumber minFractionDigits="2" maxFractionDigits="2"/>
+                                </h:outputText>
+                                <h:outputLabel value="#{gameInfoPM.employeeCount[2]}"/>
+                                <p:selectOneMenu value="#{employee.employeeOvertimeLA}">
+                                    <p:ajax update=":formId:msg"
+                                            listener="#{employee.ajaxEmployeeOvtLA}" /> 
+                                    <f:selectItem itemValue="0.la" itemLabel="0" />
+                                    <f:selectItem itemValue="1.la" itemLabel="1" />
+                                    <f:selectItem itemValue="2.la" itemLabel="2" />
+                                    <f:selectItem itemValue="3.la" itemLabel="3" />
+                                </p:selectOneMenu>
+
+
+                                <h:outputText value="#{msg['global.wk']}"/>
+                                <h:outputText value="#{gameInfoPM.employeeWorkload[3]}">
+                                    <f:convertNumber minFractionDigits="2" maxFractionDigits="2" />
+                                </h:outputText>
+                                <h:outputLabel value="#{gameInfoPM.employeeCount[3]}"/>
+                                <p:selectOneMenu value="#{employee.employeeOvertimeWK}">
+                                    <p:ajax update=":formId:msg"
+                                            listener="#{employee.ajaxEmployeeOvtWK}" /> 
+                                    <f:selectItem itemValue="0.wk" itemLabel="0" />
+                                    <f:selectItem itemValue="1.wk" itemLabel="1" />
+                                    <f:selectItem itemValue="2.wk" itemLabel="2" />
+                                    <f:selectItem itemValue="3.wk" itemLabel="3" />
+                                </p:selectOneMenu>
+
+
+                                <h:outputText value="#{msg['global.ve']}"/>
+                                <h:outputText value="#{gameInfoPM.employeeWorkload[4]}">
+                                    <f:convertNumber minFractionDigits="2" maxFractionDigits="2"/>
+                                </h:outputText>
+                                <h:outputLabel value="#{gameInfoPM.employeeCount[4]}"/>
+                                <p:selectOneMenu value="#{employee.employeeOvertimeVE}">
+                                    <p:ajax update=":formId:msg"
+                                            listener="#{employee.ajaxEmployeeOvtVE}" /> 
+                                    <f:selectItem itemValue="0.ve" itemLabel="0" />
+                                    <f:selectItem itemValue="1.ve" itemLabel="1" />
+                                    <f:selectItem itemValue="2.ve" itemLabel="2" />
+                                    <f:selectItem itemValue="3.ve" itemLabel="3" />
+                                </p:selectOneMenu>
+
+
+
+
+
+                            </p:panelGrid>
+
+                        </p:fieldset>
+
+
+                        <p:fieldset  style="margin-top: 7px;
+                                            width: 387px;
+                                            float:left;">
+
+                            <h:outputText styleClass="hh1" value="#{msg['employee.klima']}" />
+
+                            <p:panel styleClass="oneContent" >
+                                <h:form>
+                                    <p:selectOneMenu value="#{gameState.workClimateIndex}">
+                                        <f:selectItem itemValue="1" itemLabel="0 €" />
+                                        <f:selectItem itemValue="2" itemLabel="100 €" />
+                                        <f:selectItem itemValue="3" itemLabel="250 €" />
+                                        <f:selectItem itemValue="4" itemLabel="400 €" />
+                                        <f:selectItem itemValue="5" itemLabel="550 €" />
+                                        <p:ajax update=":formId:msg"
+                                                listener="#{gameState.ajaxUpdateWorkClimateIndex()}" />  
+                                    </p:selectOneMenu>
+                                    <br/>
+                                    <h:outputText value="#{msg['INVESTITIONEN IN DAS BETRIEBSKLIMA']}" />
+                                
+                                        
+                                </h:form>
+
+                            </p:panel>
+                        </p:fieldset>
+                        <!-- <h:commandButton id="updateProcess" value="Update der Arbeitsbereiche" action="{employee.updateProcess}"/> 
+                         <h:commandButton id="updateSalary" value="Update des Gehalts" action="{employee.updateSalary}"/> 
+                        -->
+
+
+                    </h:form>
+
+
+                </f:view> 
+
+            </ui:define>
+        </ui:composition>
+
+    </body>
+</html>
+

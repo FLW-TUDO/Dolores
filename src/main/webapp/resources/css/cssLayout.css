@@ -1,0 +1,192 @@
+.hide table thead th{
+    background-color: white !important;
+    color: black !important;
+    background-image: none;
+
+}
+
+.ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default {
+
+    background-image: none !important;
+    font-size: 13px;
+}
+
+.hh1{
+    font-size: 15px !important;
+    font-weight: bold !important;
+    color: #E95B2A !important;
+    margin: .83em 0 !important;
+    padding-bottom: 15px;
+}
+
+.hh2{
+    font-size: 14px;
+    font-weight: bold;
+    margin: .83em 0 !important;
+    /* text-decoration: underline !important; */
+}
+.hh3{
+    font-size: 13px;
+    font-weight: bold;
+
+
+}
+
+.helper{
+    float: left;
+    /* margin-top: 7px; */
+    width: 814px;
+}
+
+.one{
+    margin-top: 7px;
+    width: 814px;
+}
+
+.oneStatistics{
+
+    margin-top: 7px;
+    width: 746px;
+    padding-left: 80px;
+    padding-bottom: 20px;
+}
+
+.oneContent{
+    margin-top: 9px;
+}
+
+
+.two{
+    margin-top: 7px;
+    width: 390px;
+    float:left;
+}
+
+.tri{
+    margin-top: 7px;
+    width: 250px;
+    height: 700px;
+    float:left;
+}
+
+
+.ui-widget, .ui-widget .ui-widget {
+    font-size: 105% !important;
+}
+
+.ui-state-error,.ui-widget-content .ui-state-error,.ui-widget-header .ui-state-error {
+    color: black !important;
+}   
+
+.jqplot-axis{
+    width: 0px !important;
+    height: 0px !important;
+}
+
+.jqplot-yaxis{
+    width: 0px !important;
+    height: 0px !important;
+}
+
+
+#wholeView{
+    background-color: #DED4C1;
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+
+#centeredView{
+    width: 1034px;
+    margin: 0px auto;
+}
+
+
+#top {
+    position: relative;
+
+    color: white;
+    padding: 5px;
+    margin: 0px 0px 10px 0px;
+}
+
+#bottom {
+    position: relative;
+    background-color: #c2dfef;
+    padding: 5px;
+    margin: 10px 0px 0px 0px;
+    height: 160px;
+}   
+
+#graphs{
+    height: 154px;
+}
+
+.headerImg{
+    margin-left: -2px;
+    border-top-right-radius: 4px;
+    width: 851px;
+}
+
+#left {
+    height: 960px;
+    float: left;
+    padding-left: 10px;
+    width: 173px;
+    background-color: white;
+    border-top-left-radius: 4px;
+    border-bottom-left-radius: 4px;
+}
+
+#right {
+    float: right;
+    background-color: #ece3a5;
+    padding: 5px;
+    width: 150px;
+}
+
+#content{
+    background-color: #3A3A3A;
+
+    border-top-right-radius: 4px;
+    border-bottom-right-radius: 4px;
+    height: 960px;
+    padding-bottom: 0px;
+    padding-top: 0px;
+}
+
+.center_content {
+    position: relative;
+    background-color: white;
+    padding: 5px;
+}
+
+.left_content {
+    background-color: white;
+    padding: 5px;
+    margin-left: 183px;
+}
+
+.right_content {
+    background-color: white;
+    padding: 5px;
+    margin: 0px 0px 0px 180px;
+
+}
+
+#top a:link, #top a:visited {
+    color: white;
+    font-weight : bold;
+    text-decoration: none;
+}
+
+#top a:link:hover, #top a:visited:hover  {
+    color: black;
+    font-weight : bold;
+    text-decoration : underline;
+}
+
+.redBtnClass{
+    background-color: #E95B2A !important;
+}
+
+

@@ -1,0 +1,52 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core">
+    <h:head>
+        <title>#{msg['index.laden']}</title>
+
+        <f:event type="preRenderView" listener="#{gameInfoPM.check}" />
+    </h:head>
+    <h:body>
+        <h:form> <p:commandButton value="Back" onclick="history.back(); return false;"/> </h:form>
+        
+        
+        <f:view locale="#{languageBean.locale}">
+
+        <h:form>  
+            <p:dataTable var="game" value="#{userManagedBean.singleGames}">  
+                <p:column headerText="#{msg['createGame.tfCorpName']}">  
+                    <h:outputText value="#{game.corpName}" />  
+                </p:column>  
+                <p:column headerText="#{msg['createGame.tfPlayerName']}">  
+                    <h:outputText value="#{game.playerName}" />  
+                </p:column> 
+                <p:column headerText="#{msg['createGame.tfStrasse']}">  
+                    <h:outputText value="#{game.street}" />  
+                </p:column> 
+                <p:column headerText="#{msg['createGame.tfOrt']}">  
+                    <h:outputText value="#{game.location}" />  
+                </p:column> 
+
+                <p:column headerText="#{msg['loadGame.otLastAction']}">  
+                    <h:outputText value="#{game.currentState.getDateAsString()}" />  
+                </p:column> 
+
+<!--                <p:column headerText="#{msg['loadGame.otRundennummer']}">  
+                    <h:outputText value="#{game.currentState.roundNumber}" />  
+                </p:column> -->
+
+                <p:column headerText="">  
+                    <p:commandButton value="#{msg['loadGame.btnLoad']}" action="#{gameInfoPM.loadGame(game, userManagedBean.currentPlayer)}"/>
+                </p:column>  
+
+
+            </p:dataTable>
+            <p:commandButton value="Logout" action="#{userManagedBean.logout}"/>
+        </h:form> 
+        </f:view>
+    </h:body>
+</html>
+

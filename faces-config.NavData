@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene Scope="Project" version="2">
+    <Scope Scope="Faces Configuration Only"/>
+    <Scope Scope="Project">
+        <Node id="tech/conveyor.xhtml" x="1900" y="150" zoom="true"/>
+        <Node id="users/loadGame.xhtml" x="650" y="900" zoom="true"/>
+        <Node id="admin/details.xhtml" x="1650" y="150" zoom="true"/>
+        <Node id="templates/menu.xhtml" x="150" y="1050" zoom="true"/>
+        <Node id="users/stats/cash.xhtml" x="1900" y="600" zoom="true"/>
+        <Node id="users/order/orderConfirm.xhtml" x="650" y="300" zoom="true"/>
+        <Node id="users/newScenario.xhtml" x="1650" y="450" zoom="true"/>
+        <Node id="users/stats/incomingStats.xhtml" x="900" y="750" zoom="true"/>
+        <Node id="createGame.xhtml" x="400" y="150" zoom="true"/>
+        <Node id="templates/menuTemplate.xhtml" x="1650" y="300" zoom="true"/>
+        <Node id="admin/index.xhtml" x="150" y="1350" zoom="true"/>
+        <Node id="order/orderInfo.xhtml" x="150" y="150" zoom="true"/>
+        <Node id="orga/storage.xhtml" x="769" y="30" zoom="true"/>
+        <Node id="templates/mainTemplate.xhtml" x="650" y="600" zoom="true"/>
+        <Node id="users/tech/conveyor_market.xhtml" x="1400" y="600" zoom="true"/>
+        <Node id="users/orga/organisation.xhtml" x="1150" y="900" zoom="true"/>
+        <Node id="users/orderPage.xhtml" x="400" y="1200" zoom="true"/>
+        <Node id="tech/result.xhtml" x="1400" y="150" zoom="true"/>
+        <Node id="employeePage.xhtml" x="1269" y="683" zoom="true"/>
+        <Node id="tech/help.xhtml" x="400" y="900" zoom="true"/>
+        <Node id="admin/viewSingle.xhtml" x="900" y="1200" zoom="true"/>
+        <Node id="users/overviewPallets.xhtml" x="150" y="300" zoom="true"/>
+        <Node id="users/stats/storageStats.xhtml" x="2400" y="300" zoom="true"/>
+        <Node id="users/stats/outgoingStats.xhtml" x="400" y="1500" zoom="true"/>
+        <Node id="templates/header.xhtml" x="900" y="300" zoom="true"/>
+        <Node id="techPage.xhtml" x="150" y="450" zoom="true"/>
+        <Node id="orgaPage.xhtml" x="1150" y="46" zoom="true"/>
+        <Node id="users/statistics.xhtml" x="150" y="1200" zoom="true"/>
+        <Node id="loginerror.xhtml" x="400" y="1050" zoom="true"/>
+        <Node id="admin/gamesOverview.xhtml" x="1400" y="900" zoom="true"/>
+        <Node id="index.xhtml" x="650" y="750" zoom="true"/>
+        <Node id="employee/employee.xhtml" x="1304" y="550" zoom="true"/>
+        <Node id="users/employee/employee_market.xhtml" x="400" y="1350" zoom="true"/>
+        <Node id="templates/folderMenu.xhtml" x="650" y="150" zoom="true"/>
+        <Node id="order/orderForm.xhtml" x="400" y="600" zoom="true"/>
+        <Node id="users/main.xhtml" x="2400" y="150" zoom="true"/>
+        <Node id="login.xhtml" x="1900" y="300" zoom="true"/>
+        <Node id="users/order/jobPage.xhtml" x="150" y="600" zoom="true"/>
+        <Node id="users/employee/employee.xhtml" x="1150" y="1050" zoom="true"/>
+        <Node id="users/order/article.xhtml" x="400" y="750" zoom="true"/>
+        <Node id="templates/folderTemplate.xhtml" x="150" y="1500" zoom="true"/>
+        <Node id="admin/export.xhtml" x="900" y="900" zoom="true"/>
+        <Node id="users/tech/conveyor.xhtml" x="1400" y="750" zoom="true"/>
+        <Node id="templates/footer.xhtml" x="1150" y="150" zoom="true"/>
+        <Node id="tech/it.xhtml" x="900" y="600" zoom="true"/>
+        <Node id="users/employee/employee_ep_sal_market_1.xhtml" x="150" y="750" zoom="true"/>
+        <Node id="admin/allPlayers.xhtml" x="650" y="1050" zoom="true"/>
+    </Scope>
+    <Scope Scope="All Faces Configurations"/>
+</Scene>

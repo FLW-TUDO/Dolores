@@ -1,0 +1,20 @@
+{ "flw.business.store.ConveyorDynamics" : { "conditionPercentage" : 82,
+      "conveyor" : { "capacity" : 720,
+          "maintenanceCost" : 90,
+          "name" : "4Rad Diesel-Gabelstapler (mit Filter)",
+          "needsForkliftPermit" : true,
+          "price" : 85000,
+          "speed" : 5.2000000000000002,
+          "timeToDelivery" : 2,
+          "timeToRepair" : 8000,
+          "useInStorage" : true,
+          "conveyorId" : 2
+        },
+      "currentValue" : 55633.0,
+      "maintenanceEnabled" : false,
+      "overhaul" : false,
+      "overhaul_costs" : 900,
+      "periodBought" : 1,
+      "process" : 0,
+      "status" : 0
+    } }

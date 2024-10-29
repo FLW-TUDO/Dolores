@@ -1,0 +1,68 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+
+      xmlns:p="http://primefaces.org/ui">
+
+    <body>
+        <ui:composition template="/./templates/folderTemplate.xhtml">
+            <ui:define name="content">
+                <p:graphicImage value="#{stylePM.image}#{ImagePm.localeStringToLowercase}" style="border-top-right-radius: 4px;
+                                width: 849px;" />
+
+                <p:fieldset legend="#{msg['order.bestellung']}" style="width: 690px;">
+                    <h:form>
+                        <p:panelGrid columns="6">
+
+                            <h:outputLabel value="#{msg['order.article']}"/>
+                            <h:outputLabel value="#{msg[orderPM.clickedArticleDyn.name]}"/>
+                            <h:outputLabel value=" "/>
+                            <h:outputLabel value=" "/>
+                            <h:outputLabel value="#{msg['order.gesamtmenge']}"/>
+                            <h:outputLabel value="#{orderPM.orderAmount} #{msg['global.pallets']}"/>
+                            <h:outputLabel value="#{msg['order.rebate']}"/>
+                            <h:outputLabel value="#{orderPM.rebateLevel} "/>
+                            <h:outputLabel value="#{msg['order.costPerPal']}" />
+                            <h:outputLabel value="#{orderPM.getPriceAfterRebate()} €"/>
+                            <h:outputLabel value="#{msg['order.gesamt']} "/>
+                            <h:outputLabel value="#{orderPM.getCompletePalletPrice()} €"/>
+                            <h:outputLabel value="#{msg['order.delPeriod']} "/>
+                            <h:outputLabel value="#{orderPM.deliveryPeriod}#{msg['order.periodDot']}"/>
+                            <h:outputLabel value="#{msg['order.lieferkosten']} " />
+                            <h:outputLabel value="#{orderPM.getDeliveryCost()} €"/>
+                            <h:outputLabel value="#{msg['order.lieferkostenges']}"/>
+                            <h:outputLabel value="#{orderPM.getCompleteDeliveryCost()} €"/>
+                            <h:outputLabel value=" "/>
+                            <h:outputLabel value=" "/>
+                            <h:outputLabel value=" "/>
+                            <h:outputLabel value=" "/>
+
+                            <h:outputLabel value="#{msg['order.fix']} "/>
+                            <h:outputLabel value="#{orderPM.clickedArticleDyn.fixCosts} €"/>
+                            <h:outputLabel value=" "/>
+                            <h:outputLabel value=" "/>
+                            <h:outputLabel value=" "/>
+                            <h:outputLabel value=" "/>
+                            <h:outputLabel value="#{msg['order.gesamtkosten']} "/>
+                            <h:outputLabel value="#{orderPM.getCompleteOrderCost()} €"/>
+
+
+                            <p:commandButton styleClass="redBtnClass" value="#{msg['order.bestellen']}" action="#{orderPM.orderConfirm}" immediate="true" oncomplete="dlg1.show()"/>
+
+                        </p:panelGrid>
+
+                    </h:form>
+                </p:fieldset>
+                <p:dialog id="basicDialog" header="#{msg['order.erfolgHead']}" widgetVar="dlg1" closable="false" modal="true">  
+                    <h:outputText value="#{msg['order.erfolg']}" />  <br/>
+                    <p:button value="#{msg['order.continue']}" outcome="/users/order/article.xhtml?faces-redirect=true"/>
+                </p:dialog>  
+
+            </ui:define>
+        </ui:composition>
+
+    </body>
+</html>
+

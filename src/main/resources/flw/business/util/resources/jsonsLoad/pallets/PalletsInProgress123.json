@@ -1,0 +1,9 @@
+{"flw.business.store.PalletsInProgress": {
+        "id": 336,
+        "unitLoadSafetyDevices": false,
+        "error": 6,
+        "demandRound": 3,
+        "currentProcess": 2,
+        "orderno": 906630,
+        "stored": true,
+        "stockgroundId": 158}}

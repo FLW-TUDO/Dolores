@@ -1,0 +1,271 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <body>
+        <ui:composition template="/./templates/folderTemplate.xhtml" >
+            <ui:define name="content" >
+
+                <p:graphicImage value="#{stylePM.image}#{ImagePm.localeStringToLowercase}" styleClass="headerImg" />
+
+
+                <p:fieldset styleClass="two">
+                    <h:outputLabel styleClass="hh1" value="#{msg['order.fsTitle']}" />
+                    <div id="pallet_count_la" style="float:left">
+
+                        <p:lineChart  id="storageChart"  value="#{statPM.storageChart}"  
+                                      minY="0" minX="1" style="height:250px; width: 385px; margin-left: 3px;" seriesColors="E95B2A" />
+
+
+                    </div>
+                </p:fieldset>
+
+
+
+
+
+
+                <p:fieldset  styleClass="two" style="padding-bottom: 72px;">
+
+                    <h:outputText styleClass="hh1" value="#{msg['order.info']}"  /> 
+
+                    <p:panelGrid columns="2" styleClass="oneContent">
+                        <h:outputText value="#{msg['order.name']}" styleClass="hh3"/>
+                        <h:outputLabel value="#{msg[orderPM.clickedArticleDyn.article.name]}"/>
+
+
+                        <h:outputText value="#{msg['order.artNr']}" styleClass="hh3"/>
+                        <h:outputLabel value="#{orderPM.clickedArticleDyn.articleNumber}"/>
+
+                        <h:outputText value="#{msg['order.aktInStorage']}" styleClass="hh3"/>
+                        <h:outputLabel value="#{orderPM.showStocks()}"/>
+
+                        <h:outputText value="#{msg['order.avg']}" styleClass="hh3"/>
+                        <h:outputLabel value="#{orderPM.clickedArticleDyn.avgConsumption}"/>
+
+                        <h:outputText value="#{msg['order.reiw']}" styleClass="hh3"/>
+                        <h:outputLabel value="#{orderPM.clickedArticleDyn.estimatedRange}"/>
+
+                        <h:outputText value="#{msg['order.wert']}" styleClass="hh3"/>
+                        <h:outputLabel value="#{orderPM.value}">
+                            <f:convertNumber type="currency"  maxFractionDigits="0" currencySymbol="€" locale="#{languageBean.language}"/>
+                        </h:outputLabel>
+
+                        <h:outputText value="#{msg['order.free']}" styleClass="hh3"/>
+                        <h:outputLabel value="#{orderPM.showFreeSpace()}"/>
+
+                    </p:panelGrid>
+
+                </p:fieldset>
+
+
+
+                <div class="helper"/>
+
+
+
+                <p:fieldset styleClass="two">
+
+                    <h:outputText styleClass="hh1" value="#{msg['order.orderInfo']}"  />
+
+                    <p:panelGrid columns="2" style="margin-top: 20px;">
+
+                        <h:outputText value="#{msg['order.price']}" styleClass="hh3"/>
+                        <h:outputText value="#{orderView.clickedArticleDyn.article.getPricePerPalletView()}">
+                            <f:convertNumber type="currency"  maxFractionDigits="0" currencySymbol="€" locale="#{languageBean.language}"/>
+                        </h:outputText>
+
+                        <h:outputText value="#{msg['order.min']}" styleClass="hh3"/>
+                        <h:outputLabel value="#{orderView.clickedArticleDyn.article.minOrder} #{msg['global.pallets']}"/>
+
+                        <h:outputText value="#{msg['order.fix']}" styleClass="hh3"/>
+                        <h:outputLabel value="#{orderView.clickedArticleDyn.article.fixCosts}">
+                            <f:convertNumber type="currency"  maxFractionDigits="0" currencySymbol="€" locale="#{languageBean.language}"/>
+                        </h:outputLabel>
+
+                        <h:outputText value="#{msg['order.opt']}" rendered="#{orderPM.checkOptimalOrderModule()}" styleClass="hh3"/>
+                        <h:outputLabel value="#{orderView.clickedArticleDyn.optimalOrderAmount} Paletten" rendered="#{orderPM.checkOptimalOrderModule()}"/>
+                        
+                        <h:outputText value="#{msg['order.sellPrice']}  " styleClass="hh3"/>
+                        <h:outputLabel value="#{orderView.clickedArticleDyn.article.salePriceAsInt}">
+                            <f:convertNumber type="currency"  maxFractionDigits="0" currencySymbol="€" locale="#{languageBean.language}"/>
+                        </h:outputLabel>
+                    </p:panelGrid>  
+                    <br/>
+                    
+                    
+
+                    <p:panelGrid columns="3">
+                        <h:outputText value="#{msg['order.rebate']}" styleClass="hh3"/>
+                        <h:outputText value="#{msg['order.minPallet']}" styleClass="hh3"/>
+                        <h:outputText value="#{msg['order.costPerPal']}" styleClass="hh3"/>
+
+                        <h:outputLabel value="1"/>
+                        <h:outputLabel value="#{orderView.clickedArticleDyn.article.rebateAmount1}"/>
+                        <h:outputLabel value="#{orderView.clickedArticleDyn.article.rebateCost1}">
+                             <f:convertNumber type="currency"  maxFractionDigits="0" currencySymbol="€" locale="#{languageBean.language}"/>
+                        </h:outputLabel>
+
+
+                        <h:outputLabel value="2"/>
+                        <h:outputLabel value="#{orderView.clickedArticleDyn.article.rebateAmount2}"/>
+                        <h:outputLabel value="#{orderView.clickedArticleDyn.article.rebateCost2}">
+                             <f:convertNumber type="currency"  maxFractionDigits="0" currencySymbol="€" locale="#{languageBean.language}"/>
+                        </h:outputLabel>
+
+                    </p:panelGrid>
+                    <br/>
+                    <br/>
+                    <h4>
+                        <h:outputLabel value="#{msg['order.deliveryCost']}" styleClass="hh2"/>
+                    </h4>
+                    <p:panelGrid columns="5">
+                        <h:outputLabel value="#{msg['order.normalDelivery']} " styleClass="hh3"/>
+                        <h:outputLabel value="#{orderView.clickedArticleDyn.article.normalDelivery}"/>
+                        <h:outputLabel value="#{msg['order.normalDeliveryPeriod']}"/>
+                        <h:outputLabel value="#{orderView.clickedArticleDyn.article.normalDeliveryCost}">
+                            <f:convertNumber type="currency"  maxFractionDigits="0" currencySymbol="€" locale="#{languageBean.language}"/>
+                        </h:outputLabel>
+                        <h:outputLabel value="#{msg['order.normalDeliveryPeriodPrice']}"/>
+
+                        <h:outputLabel value="#{msg['order.fastDel']} " styleClass="hh3"/> 
+                        <h:outputLabel value="#{orderView.clickedArticleDyn.article.expressDelivery}"/>
+                        <h:outputLabel value="#{msg['order.fastDelPeriod']}   "/>
+                        <h:outputLabel value="#{orderView.clickedArticleDyn.article.expressDeliveryCost}">
+                            <f:convertNumber type="currency"  maxFractionDigits="0" currencySymbol="€" locale="#{languageBean.language}"/>
+                        </h:outputLabel>
+                        <h:outputLabel value="#{msg['order.fastDelPeriodPrice']} "/>
+                    </p:panelGrid>
+
+                    <br/>
+                    <br/>
+
+                    
+
+                </p:fieldset>
+
+
+
+
+
+
+
+
+                <p:fieldset id="orderPanel"  styleClass="two">
+
+                    <h:outputText styleClass="hh1" value="#{msg['order.form']}" />
+
+                    <h:form id="formId">
+
+                        <p:growl id="msg" />  
+
+                        <p:panelGrid columns="2" id="panelId" style="margin-top: 20px;" >
+
+                            <h:outputText value="#{msg['order.article']}  " styleClass="hh3"/>
+                            <h:outputText value="#{msg[orderPM.clickedArticleDyn.article.name]}"/>
+
+
+                            <h:outputLabel value="#{msg['order.menge']} " styleClass="hh3" />
+
+
+
+                            <p:inputText value="#{orderView.orderAmount}" id="amount">
+                                <f:validateLongRange minimum="#{orderPM.clickedArticleDyn.article.minOrder}" maximum="1000" />
+                            </p:inputText>
+
+
+                            <h:outputLabel value="#{msg['order.delType']} " styleClass="hh3"/>
+                            <h:outputLabel value="#{msg['order.delPeriod']}  " styleClass="hh3"/>
+
+                            <p:selectOneMenu id="types" value="#{orderView.deliveryType}" required="true">
+
+                                <f:selectItem itemLabel="#{msg['order.choosedelType']} " itemValue="" />  
+                                <f:selectItems value="#{orderView.deliveryTypes}"/>
+                                <p:ajax update=":formId:ztpkt, formId:slider"  
+                                        listener="#{orderView.deliveryTypeChanged}" /> 
+                            </p:selectOneMenu>
+
+
+                            <h:outputText  id="ztpkt" value="#{orderView.deliveryPeriod} #{msg['order.periodDot']}"/>
+
+
+                            <h:inputHidden id="txt2" value="#{orderView.deliveryPeriod}" />
+                            <p:slider for="txt2" display="ztpkt" id="slider" minValue="#{orderView.minValue}" maxValue="#{orderView.maxValue}"
+                                      displayTemplate="{value} #{msg['order.periodDot']}">
+                                <p:ajax listener="#{orderView.sliderChanged}" update=":formId:ztpkt" />
+                            </p:slider>
+                            <p:commandButton action="#{orderView.toOrderConfirm()}" value="#{msg['order.bestellen']}" update=":formId:msg" />
+                        </p:panelGrid>
+
+
+
+
+                    </h:form>   
+
+                </p:fieldset>
+
+                <p:fieldset styleClass="two">
+
+                    <h:outputText styleClass="hh1" value="#{msg['order.fsOpenOrder']}" />
+
+                    <p:scrollPanel style="width: 380px; margin-top: 20px;" >
+                        <f:view>
+                            <h:form>
+
+                                <p:dataTable value="#{orderPM.openOrdersClicked}" var="item" style="width: 380px;" styleClass="hide" emptyMessage="#{msg['empty.message']}">
+
+
+                                    <p:column>
+                                        <f:facet name="header">
+                                            <h:outputText value="#{msg['global.artikel']}"/>
+                                        </f:facet>
+
+                                        <h:outputText value="#{msg[item.articleDynamics.name]}"/>
+                                    </p:column>
+
+                                    <p:column>
+                                        <f:facet name="header">
+                                            <h:outputText value="#{msg['order.orderPerNeu1']} &#10; #{msg['order.orderPerNeu2']}" style="white-space:pre;"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.orderPeriod}"/>
+                                    </p:column>
+
+
+                                    <p:column>
+                                        <f:facet name="header">
+                                            <h:outputText value="#{msg['global.pallets']}"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.orderAmount}"/>
+                                    </p:column>
+                                    <p:column>
+                                        <f:facet name="header">
+                                            <h:outputText value="#{msg['order.date']}"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.deliveryWish}"/>
+                                    </p:column>
+                                </p:dataTable>
+
+                                <br/>
+                                <br/>
+
+                            </h:form>
+                        </f:view>
+
+
+
+                    </p:scrollPanel>
+                </p:fieldset>
+
+
+
+            </ui:define>
+        </ui:composition>
+
+    </body>
+</html>
+

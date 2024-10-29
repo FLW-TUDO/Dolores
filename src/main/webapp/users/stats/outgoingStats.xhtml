@@ -1,0 +1,158 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <body>
+        <ui:composition template="/./templates/folderTemplate.xhtml">
+            <ui:define name="content">
+
+
+                <p:graphicImage value="./../../resources/img/kennzahlen#{ImagePm.localeStringToLowercase}" style="border-top-right-radius: 4px;
+                                width: 849px;" />
+                
+                <h:form>
+                    <p:button value="#{msg['main.btnCash']}" outcome="cash.xhtml?faces-redirect=true"/>
+                    <p:button value="#{msg['main.btnInc']}" outcome="incomingStats.xhtml?faces-redirect=true"/>
+                    <p:button value="#{msg['main.btnStorage']}" outcome="storageStats.xhtml?faces-redirect=true"/>
+                    <p:button value="#{msg['main.btnOut']}" outcome="outgoingStats.xhtml?faces-redirect=true"/>
+                    <p:button value="#{msg['main.btnStat']}" outcome="/users/statistics.xhtml?faces-redirect=true" />
+                    <br/>
+                    <br/>
+                    <br/>
+                </h:form>
+
+                <p:fieldset styleClass="one">
+
+                    <h:outputText value="#{msg['main.btnOut']}" styleClass="hh1" />
+                    
+                    <p:panelGrid styleClass="oneContent">  
+                        <f:facet name="header">  
+                            <p:row>  
+                                <p:column colspan="1"></p:column>  
+                                <p:column colspan="2">#{msg['global.wk']}</p:column>  
+                                <p:column colspan="2">#{msg['global.ve']}</p:column>  
+                            </p:row>  
+
+                        </f:facet>  
+
+                        <p:row>  
+                            <p:column><h:outputLabel value=""/></p:column>
+                            <p:column><h:outputLabel value="#{msg['stats.all1']}" styleClass="hh3"/></p:column>
+                            <p:column><h:outputLabel value="#{msg['stats.all2']}" styleClass="hh3"/></p:column>
+                            <p:column><h:outputLabel value="#{msg['stats.all1']}" styleClass="hh3"/></p:column>
+                            <p:column><h:outputLabel value="#{msg['stats.all2']}" styleClass="hh3"/> </p:column>
+                        </p:row>  
+                        <p:row>  
+                            <p:column><h:outputLabel value="#{msg['stats.all3']}" styleClass="hh3"/></p:column>
+                            <p:column><h:outputLabel value=""/></p:column>
+                            <p:column><h:outputLabel value=" "/></p:column>
+                            <p:column><h:outputLabel value="#{infoPM.getEmpCountWfp('VE')}"/></p:column>
+                            <p:column><h:outputLabel value="#{infoPM.getEmpCountWfpNew(4)}"/></p:column>
+                        </p:row>  
+                        <p:row>  
+                            <p:column><h:outputLabel value="#{msg['stats.all4']}" styleClass="hh3"/></p:column>
+                            <p:column><h:outputLabel value=" "/></p:column>
+                            <p:column><h:outputLabel value=" "/></p:column>
+                            <p:column><h:outputLabel value="#{infoPM.getEmpCountWofp('VE')}"/></p:column>
+                            <p:column><h:outputLabel value="#{infoPM.getEmpCountWofpNew(4)}"/></p:column>
+                        </p:row>  
+                        <p:row>  
+                            <p:column> <h:outputLabel value="#{msg['stats.all5']}" styleClass="hh3"/></p:column>
+                            <p:column> <h:outputLabel value="#{infoPM.getEmpCount('WK')}"/></p:column>
+                            <p:column> <h:outputLabel value="#{infoPM.getEmpCountNew(3)}"/></p:column>
+                            <p:column> <h:outputLabel value="#{infoPM.getEmpCount('VE')}"/></p:column>
+                            <p:column> <h:outputLabel value="#{infoPM.getEmpCountNew(4)}"/></p:column>
+                        </p:row>  
+                        <p:row>  
+                            <p:column>  <h:outputLabel value="#{msg['stats.all6']}" styleClass="hh3"/></p:column>
+                            <p:column>  <h:outputLabel value="#{infoPM.getEmpWorkload('WK')}">
+                                    <f:convertNumber maxFractionDigits="2" minFractionDigits="2"/>
+                                </h:outputLabel></p:column>
+                            <p:column>  <h:outputLabel value=" "/></p:column>
+                            <p:column>  <h:outputLabel value="#{infoPM.getEmpWorkload('VE')}">
+                                    <f:convertNumber maxFractionDigits="2" minFractionDigits="2"/>
+                                </h:outputLabel></p:column>
+                            <p:column>  <h:outputLabel value=""/></p:column>
+                        </p:row>  
+                        <p:row>  
+                            <p:column>    <h:outputLabel value="#{msg['stats.all7']}" styleClass="hh3"/></p:column>
+                            <p:column>    <h:outputLabel value=""/></p:column>
+                            <p:column>    <h:outputLabel value=" "/></p:column>
+                            <p:column>    <h:outputLabel value="#{infoPM.getConvCountWfp('VE')}"/></p:column>
+                            <p:column>    <h:outputLabel value="#{infoPM.getConvCountWfpNew(4)}"/></p:column>
+                        </p:row>  
+                        <p:row>  
+                            <p:column>    <h:outputLabel value="#{msg['stats.all8']}" styleClass="hh3"/></p:column>
+                            <p:column>    <h:outputLabel value=" "/></p:column>
+                            <p:column>    <h:outputLabel value=" "/></p:column>
+                            <p:column>    <h:outputLabel value="#{infoPM.getConvCountWofp('VE')}"/></p:column>
+                            <p:column>    <h:outputLabel value="#{infoPM.getConvCountWofpNew(4)}"/></p:column>
+                        </p:row>  
+                        <p:row>  
+                            <p:column>    <h:outputLabel value="#{msg['stats.all9']}" styleClass="hh3"/></p:column>
+                            <p:column>    <h:outputLabel value=" "/></p:column>
+                            <p:column>    <h:outputLabel value=" "/></p:column>
+                            <p:column>    <h:outputLabel value="#{infoPM.getConvCount('VE')}"/></p:column>
+                            <p:column>    <h:outputLabel value="#{infoPM.getConvCountNew(4)}"/></p:column>
+                        </p:row>  
+                        <p:row>  
+                            <p:column>    <h:outputLabel value="#{msg['stats.all10']}" styleClass="hh3"/></p:column>
+                            <p:column>    <h:outputLabel value=""/></p:column>
+                            <p:column>     <h:outputLabel value=" "/></p:column>
+                            <p:column>     <h:outputLabel value="#{infoPM.getWorkloadConv('VE')}">
+                                    <f:convertNumber maxFractionDigits="2" minFractionDigits="2"/>
+                                </h:outputLabel></p:column>
+                            <p:column>    <h:outputLabel value=""/></p:column>
+                        </p:row>  
+                        <p:row>
+                            <p:column>    <h:outputLabel value="#{msg['stats.all11']}" styleClass="hh3"/></p:column>
+                            <p:column>    <h:outputLabel value="#{infoPM.getEmpOvt('WK')}"/></p:column>
+                            <p:column>     <h:outputLabel value="#{infoPM.getEmpOvtNew('WK')}"/></p:column>
+                            <p:column>    <h:outputLabel value="#{infoPM.getEmpOvt('VE')}"/></p:column>
+                            <p:column>    <h:outputLabel value="#{infoPM.getEmpOvtNew('VE')}"/></p:column>
+                        </p:row>  
+                        <p:row>
+                            <p:column>     <h:outputLabel value="#{msg['stats.all12']}" styleClass="hh3"/></p:column>
+                            <p:column>     <h:outputLabel value="#{infoPM.getPalletsToTransport('WK')}">
+                                    <f:convertNumber maxFractionDigits="0"/>
+                                </h:outputLabel></p:column>
+                            <p:column>    <h:outputLabel value="#{infoPM.getPalletsToTransportNew(3)}"/></p:column>
+                            <p:column>     <h:outputLabel value="#{infoPM.getPalletsToTransport('VE')}">
+                                    <f:convertNumber maxFractionDigits="0"/>
+                                </h:outputLabel></p:column>
+                            <p:column>       <h:outputLabel value="#{infoPM.getPalletsToTransportNew(4)}"/></p:column>
+                        </p:row>  
+                        <p:row>
+                            <p:column>    <h:outputLabel value="#{msg['stats.all13']}" styleClass="hh3"/></p:column>
+                            <p:column>     <h:outputLabel value="#{infoPM.getPalletsTransported('WK')}"/></p:column>
+                            <p:column>     <h:outputLabel value=" "/></p:column>
+                            <p:column>       <h:outputLabel value="#{infoPM.getPalletsTransported('VE')}"/></p:column>
+                            <p:column>       <h:outputLabel value=""/></p:column>
+
+
+
+                        </p:row>  
+
+
+                    </p:panelGrid>  
+
+
+
+
+
+
+
+
+                </p:fieldset>
+
+
+
+            </ui:define>
+        </ui:composition>
+
+    </body>
+</html>

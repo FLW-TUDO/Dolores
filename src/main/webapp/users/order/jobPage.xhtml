@@ -1,0 +1,103 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <body>
+        <ui:composition template="/./templates/folderTemplate.xhtml">
+            <ui:define name="content">
+                <h:form>
+                    
+                    <p:graphicImage value="#{stylePM.image}#{ImagePm.localeStringToLowercase}" style="border-top-right-radius: 4px;
+                                width: 849px;" />
+
+                    <p:fieldset legend="#{msg['job.head']}" style="width: 420px;">
+                        <p:scrollPanel mode="native" style="height: 556px;">
+                            <f:view>
+
+
+                                <p:dataTable value="#{orderPM.jobThisPeriod}" var="item" style="width: 400px;">
+
+                                    <p:column>
+                                        <f:facet name="header">
+                                            <h:outputText value="#{msg['job.article']}"/>
+                                        </f:facet>
+                                        <h:outputText value="#{msg[item.articleDynamics.name]}"/>
+                                    </p:column>
+
+                                    <p:column>
+                                        <f:facet name="header">
+                                            <h:outputText value="#{msg['job.menge']}"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.toDeliver}"/>
+                                    </p:column>
+
+
+                                    <p:column>
+                                        <f:facet name="header">
+                                            <h:outputText value="#{msg['job.wert']}"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.jobvalue}">
+                                             <f:convertNumber type="currency"  maxFractionDigits="0" currencySymbol="€" locale="#{languageBean.language}"/>
+                                        </h:outputText>
+                                    </p:column>
+
+                                </p:dataTable>
+                            </f:view>
+                        </p:scrollPanel>
+                    </p:fieldset>
+                    <br/>
+                    <br/>
+                    <p:fieldset legend="#{msg['job.head2']}" style="width: 420px;">
+
+                        <p:dataTable value="#{orderPM.jobOldPeriod}" var="item" style="width: 400px;">
+
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="#{msg['job.article']}"/>
+                                </f:facet>
+                                <h:outputText value="#{msg[item.articleDynamics.name]}"/>
+                            </p:column>
+
+
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="#{msg['job.menge']}"/>
+                                </f:facet>
+                                <h:outputText value="#{item.toDeliver}"/>
+                            </p:column>
+
+
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="#{msg['job.wert']}"/>
+                                </f:facet>
+                                <h:outputText value="#{item.jobvalue}">
+                                    <f:convertNumber maxFractionDigits="0" minFractionDigits="0"/>
+                                </h:outputText>
+                            </p:column>
+
+                        </p:dataTable>
+                    </p:fieldset>
+
+
+                    <br/>
+                    <br/>
+
+                </h:form>
+
+
+
+
+
+                <br/>
+                <p:button value="#{msg['global.back']}" outcome="/users/orderPage"/>
+            </ui:define>
+        </ui:composition>
+
+    </body>
+</html>
+

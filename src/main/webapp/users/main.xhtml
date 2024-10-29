@@ -1,0 +1,273 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <body >
+        <ui:composition template="./../templates/mainTemplate.xhtml">
+            <ui:define name="contentMain">
+                <f:view locale="#{languageBean.locale}">
+                    <p:graphicImage value="./../../resources/img/startseite#{ImagePm.localeStringToLowercase}" styleClass="headerImg" />
+                    <br/>
+                    <h:form>
+                        <p:button value="#{msg['main.btnCash']}" outcome="stats/cash.xhtml?faces-redirect=true"/>
+                        <p:button value="#{msg['main.btnInc']}" outcome="stats/incomingStats.xhtml?faces-redirect=true"/>
+                        <p:button value="#{msg['main.btnStorage']}" outcome="stats/storageStats.xhtml?faces-redirect=true"/>
+                        <p:button value="#{msg['main.btnOut']}" outcome="stats/outgoingStats.xhtml?faces-redirect=true"/>
+                        <p:button value="#{msg['main.btnStat']}" outcome="/users/statistics.xhtml?faces-redirect=true" />
+                        <br/>
+                        <br/>
+                        <br/>
+                    </h:form>
+                    <p:fieldset styleClass="one" toggleable="false" collapsed="false">
+                        <h:outputText value="#{msg['main.fsNachrichten']}" styleClass="hh1" />
+                        <p:scrollPanel style="height: 250px;" styleClass="oneContent">
+
+                        <p:dataTable value="#{gameInfoPM.messages}" var="item" scrollable="false" scrollHeight="200" style="width: 800px;" >
+                            <p:column style="width: 180px;">
+                                <f:facet name="header">
+                                    <h:outputText value="#{msg['main.otRnr']}"/>
+                                </f:facet>
+                                <h:outputText value="#{item.roundNumber}"/>
+                            </p:column>
+
+                            <p:column style="width: 600px;">
+                                <f:facet name="header">
+                                    <h:outputText value="#{msg['main.otNachricht']}"/>
+                                </f:facet>
+                                <h:outputText value="#{item.message}"/>
+                            </p:column>
+
+
+                        </p:dataTable>
+
+                        </p:scrollPanel>
+                   </p:fieldset> 
+
+                    <p:fieldset styleClass="one" >
+                        <h:outputText value="#{msg['palletO.head']}" styleClass="hh1" />
+
+                        <p:panelGrid columns="8" styleClass="oneContent">
+                            <h:outputText value="  "/>
+                            <h:outputText value="#{msg['global.en']}" styleClass="hh3"/>
+                            <h:outputText value="#{msg['global.wv']}" styleClass="hh3"/>
+                            <h:outputText value="#{msg['global.laEin']}" styleClass="hh3"/>
+                            <h:outputText value="#{msg['global.la']}" styleClass="hh3"/>
+                            <h:outputText value="#{msg['global.laAus']}" styleClass="hh3"/>
+                            <h:outputText value="#{msg['global.wk']}" styleClass="hh3"/>
+                            <h:outputText value="#{msg['global.ve']}" styleClass="hh3"/>
+
+                            <h:outputText value="#{msg['palletO.transported']}" styleClass="hh3"/>
+                            <h:outputText value="#{gameInfoPM.palletOverviewTransported[0]}"/>
+                            <h:outputText value="#{gameInfoPM.palletOverviewTransported[1]}"/>
+                            <h:outputText value="#{gameInfoPM.palletOverviewTransported[5]}"/>
+                            <h:outputText value="  "/>
+                            <h:outputText value="#{gameInfoPM.palletOverviewTransported[6]}"/>
+                            <h:outputText value="#{gameInfoPM.palletOverviewTransported[3]}"/>
+                            <h:outputText value="#{gameInfoPM.palletOverviewTransported[4]}"/>
+
+                            <h:outputText value="#{msg['palletO.notTransported']}" styleClass="hh3"/>
+                            <h:outputText value="#{gameInfoPM.palletOverviewNotTransported[0]}"/>
+                            <h:outputText value="#{gameInfoPM.palletOverviewNotTransported[1]}"/>
+                            <h:outputText value="#{gameInfoPM.palletOverviewNotTransported[5]}"/>
+                            <h:outputText value="  "/>
+                            <h:outputText value="#{gameInfoPM.palletOverviewNotTransported[6]}"/>
+                            <h:outputText value="#{gameInfoPM.palletOverviewNotTransported[3]}"/>
+                            <h:outputText value="#{gameInfoPM.palletOverviewNotTransported[4]}"/>
+
+                        </p:panelGrid>
+
+
+
+                        <br/>
+
+                    </p:fieldset>
+
+
+                </f:view>
+            </ui:define>
+
+            <!--
+                <p:fieldset styleClass="one" >
+                <h:outputText value="Wo sind meine Paletten? (Ist diese Anzeige nützlich?)" styleClass="hh1" />
+
+                <p:panelGrid columns="5" styleClass="oneContent">
+                    <h:outputText value="  "/>
+                    <h:outputText value="Entladung" styleClass="hh3"/>
+                    <h:outputText value="Warenvereinahmung" styleClass="hh3"/>
+                    
+                    <h:outputText value="Warenkontrolle" styleClass="hh3"/>
+                    <h:outputText value="Verladung" styleClass="hh3"/>
+
+                    <h:outputText value="Anzahl" styleClass="hh3"/>
+                    <h:outputText value="#{gameInfoPM.woSindDiePaletten(0)}"/>
+                    <h:outputText value="#{gameInfoPM.woSindDiePaletten(1)}"/>
+                    
+                    <h:outputText value="#{gameInfoPM.woSindDiePaletten(3)}"/>
+                    <h:outputText value="#{gameInfoPM.woSindDiePaletten(4)}"/>
+
+                    
+
+                </p:panelGrid>
+                
+                
+
+                <br/>
+
+                </p:fieldset>
+                
+                -->
+                
+                
+            
+            <!--
+                        <ui:define name="footerMain">
+            
+                            <p:panel id="graphs" style="min-width: 1280px;">
+                                <div id="footer" >
+            
+            
+            
+            
+                                    <div id="balance_foot" style="float:left">
+            
+            
+                                        <p:lineChart seriesColors="E95B2A" title="Kontostand (in €)" id="linear" value="#{statPM.balanceChart}"  
+                                                     extender="ext" minY="0" minX="1" style="height:150px; width: 300px;" /> 
+                                    </div>
+                                    <div id="satisfaction_foot" style="float:left">
+            
+                                        <p:lineChart seriesColors="E95B2A"  id="satisfaction" title="Kundenzufriedenheit (in %)" value="#{statPM.satisfactionChart}"  
+                                                     extender="ext" minY="0" minX="1" style="height:150px; width: 300px;" /> 
+            
+            
+                                    </div>
+                                    <h:form>
+            
+            
+                                        <div  id="roundnumber_foot" style="float:left;">
+                                            <p:outputLabel  style="color: #666;
+                                                            font-family: Arial, Helvetica, sans-serif;
+                                                            font-size: 20px;" value="Runde: "/>
+            
+            
+                                            <p:outputLabel style="color: #666;
+                                                           font-family: Arial, Helvetica, sans-serif;
+                                                           font-size: 20px;" value="#{gameInfoPM.currentState.roundNumber}"/>
+                                        </div>
+                                      <p:commandButton id="blockTest" value="Nächste Periode" disabled="#{!gameInfoPM.gameStateOk}" rendered="#{!gameInfoPM.fromLoading}" 
+                                                         action="#{gameInfoPM.nextRound()}"  update=":graphs" style="height: 120px; width: 120px; float: left;"
+                                                         onclick="pbRound.start();
+                                                                 nextRB.disable();" widgetVar="nextRB">
+            
+                                        </p:commandButton>-->
+            <!--
+                                        <p:progressBar widgetVar="pbRound" ajax="true" value="#{gameInfoPM.progress}" labelTemplate="{value}%" styleClass="animated" id="pbOld">  
+                                            <p:ajax event="complete" listener="#{progressBean.onComplete}" oncomplete="nextRB.enable()"/>  
+                                            <p:poll id="progressPoll1"  async="true" interval="1"
+                                                    autoStart="true" update="pbOld"/>
+                                        </p:progressBar>  
+
+            <p:button value="Statistiken" outcome="/users/statistics.xhtml?faces-redirect=true" style="height: 120px; width: 120px;"/>
+
+            <p:button value="Übersicht Paletten" outcome="overviewPallets.xhtml?faces-redirect=true" style="height: 120px; width: 120px; float: left;"/>
+            <p:button value="Nachrichten" outcome="messages.xhtml?faces-redirect=true" style="height: 120px; width: 120px;"/>
+
+
+
+
+
+
+
+
+
+
+            <p:button value="Hauptmenü" outcome="/./main.xhtml" style="height: 120px; width: 120px;"/>
+
+
+
+            <p:blockUI block=":wholeView" widgetVar="bui"/>
+
+
+
+
+
+
+            <p:commandButton value="Nächste Periode" 
+                             onclick="nR.show()" 
+                             type="submit"
+                             immediate="true"
+                             style="height: 120px; width: 120px;"
+                             />
+
+           
+                                        <p:commandButton id="button" styleClass="small_button" type="submit" value="Nächste runde PB Popup" immediate="true"
+                                                         action="#{gameInfoPM.nextRound()}" onclick="progressDlg.show()" oncomplete="progressDlg.hide()"
+                                                         style="height: 120px; width: 120px; float: left;">
+                                        </p:commandButton>
+
+
+
+
+
+
+
+            <p:dialog id="nextRound"  header="Nächste Runde" widgetVar="nR" modal="true" style=" width:800px; height:800px" resizable="false">
+
+
+                <p>Wollen sie wirklich die nächste Periode starten?</p>
+
+                <br/>
+
+                <p:commandButton id="buttonDLG" styleClass="small_button" type="submit" value="Bestätigen" immediate="true"
+                                 action="#{gameInfoPM.nextRound()}" onclick="nR.hide();
+                                         progressDlg.show()" oncomplete="progressDlg.hide()"
+                                 >
+                </p:commandButton>    
+
+
+
+
+                <p:commandButton value="Abbrechen" onclick="nR.hide();" type="button" />
+
+            </p:dialog>
+
+
+
+
+            <p:dialog id="dialog" widgetVar="progressDlg" showHeader="false" closable="false" dynamic="true" resizable="false" modal="true"
+                      style="width:300px; height:28px">
+
+
+                <p:progressBar id="progress" value="#{gameInfoPM.progress}" labelTemplate="{value}%" displayOnly="true" style="width: 280px;"/>
+
+
+
+
+
+                <p:poll id="progressPoll"  async="true" interval="1"
+                        autoStart="true" update="progress"/>
+
+
+
+            </p:dialog>
+
+
+
+
+
+
+        </h:form>
+    </div> 
+
+</p:panel>
+
+</ui:define>
+            -->
+        </ui:composition>
+
+    </body>
+</html>

@@ -1,0 +1,14 @@
+{ "flw.business.store.EmployeeDynamics" : { "employee" : { "age" : 44,
+          "contractType" : 2,
+          "employmentPeriode" : 4,
+          "endPeriode" : 12,
+          "firstName" : "Sieglinde",
+          "gender" : false,
+          "lastName" : "Ost"
+        },
+      "motivationPercentage" : 0.82,
+      "process" : 3,
+      "qualifications" : 3,
+      "roundnumber" : 10,
+      "salary" : 145
+    } }

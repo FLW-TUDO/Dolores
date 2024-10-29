@@ -1,0 +1,14 @@
+{ "flw.business.store.EmployeeDynamics" : { "employee" : { "age" : 32,
+          "contractType" : 0,
+          "employmentPeriode" : 1,
+          "endPeriode" : 2147483647,
+          "firstName" : "Conrad",
+          "gender" : true,
+          "lastName" : "Anger"
+        },
+      "motivationPercentage" : 0.82,
+      "process" : 1,
+      "qualifications" : 1,
+      "roundnumber" : 10,
+      "salary" : 125
+    } }

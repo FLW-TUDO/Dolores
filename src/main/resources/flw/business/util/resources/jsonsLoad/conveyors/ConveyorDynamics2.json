@@ -1,0 +1,20 @@
+{ "flw.business.store.ConveyorDynamics" : { "conditionPercentage" : 82,
+      "conveyor" : { "capacity" : 720,
+          "maintenanceCost" : 50,
+          "name" : "3Rad Elektro-Gablestapler",
+          "needsForkliftPermit" : true,
+          "price" : 45000,
+          "speed" : 4.4000000000000004,
+          "timeToDelivery" : 1,
+          "timeToRepair" : 4000,
+          "useInStorage" : true,
+          "conveyorId" : 1
+        },
+      "currentValue" : 30600,
+      "maintenanceEnabled" : true,
+      "overhaul" : false,
+      "overhaul_costs" : 500,
+      "periodBought" : 1,
+      "process" : 2,
+      "status" : 0
+    } }

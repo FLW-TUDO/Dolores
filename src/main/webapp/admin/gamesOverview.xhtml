@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this template, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core">
+    <h:head>
+        <title>Übersicht</title>
+        <script>
+
+
+
+            function ext() {
+
+
+
+                this.cfg.axes.yaxis.tickOptions = {
+                    formatString: '%d'
+                };
+                this.cfg.axes.xaxis.tickOptions = {
+                    formatString: '%d'
+                };
+
+
+                this.cfg.axes.xaxis.tickInterval = 1;
+                this.cfg.axes.yaxis.show = false;
+            }
+        </script>
+    </h:head>
+    <body>
+        <h:form>
+            
+            <p:poll interval="5" update="overview" />  
+            
+            
+            <p:dataTable id="overview" value="#{admPM.runningGames}" var="game" rowStyleClass="#{game.currentState.roundNumber lt 100 ? 'old' : null}">
+                <p:column>
+                    <!--<f:facet name="header">
+                        <h:outputText value="Allgemiene Informationen"/>
+                    </f:facet>-->
+
+                    
+                    
+                    <br/>
+
+                    <p:panelGrid columns="2">
+                        <f:facet name="header">
+                            <h:outputText value="Allgemeine Informationen"/>
+                        </f:facet>
+                        <h:outputLabel value="Name des Unternehmens: "  />
+                        <h:outputText value="#{game.corpName}"/>
+                        <h:outputLabel value="Spieler Name: " />
+                        <h:outputText value="#{game.playerName}"/>
+                        <h:outputLabel value="Straße: "  />
+                        <h:outputText value="#{game.street}"/>
+                        <h:outputLabel value="Ort: "  />
+                        <h:outputText value="#{game.location}"/>
+                        <h:outputLabel value="Uhrzeit: "/>
+                        <h:outputText value="#{game.setDate()}"/>
+
+                    </p:panelGrid>
+
+
+                    <br/>
+
+
+                    <p:panelGrid columns="2"> 
+                        <f:facet name="header">
+                            <h:outputText value="Kennzahlen"/>
+                        </f:facet>
+                        <h:outputLabel value="Runde:  " for="" />
+                        <h:outputText value="#{game.currentState.roundNumber}" />
+                        <h:outputLabel value="Kundenzufriedenheit:  " for="" />
+                        <h:outputText value="#{game.currentState.getValue('satisfaction')}" />
+                        <h:outputLabel value="Kontostand: " for="" />
+                        <h:outputText value="#{game.currentState.getValue('accountbalance')}" />
+
+                    </p:panelGrid>
+
+                    <br/>
+                </p:column>
+
+                <p:column>
+                    <f:facet name="header">
+                        <h:outputText value="Kontostand"/>
+                    </f:facet>
+                    <p:lineChart seriesColors="E95B2A" id="linear" value="#{admPM.getBalance(game)}" 
+                                 extender="ext" minY="0" minX="1" style="height:250px; width: 500px" />  
+                </p:column>
+                <p:column>
+                    <f:facet name="header">
+                        <h:outputText value="Kundenzufriedenheit"/>
+                    </f:facet>
+                    <p:lineChart seriesColors="E95B2A"  value="#{admPM.getSatisfaction(game)}"  
+                                 extender="ext" minY="0" minX="1" style="height:250px; width: 500px" />  
+                </p:column>
+                <p:column>
+                    <!--<p:commandButton value="Details" action="#{admPM.storeInfo(game)}">
+                        
+                    </p:commandButton>-->
+                    <p:commandButton value="Export" action="#{admPM.export(game)}">
+                        
+                    </p:commandButton>
+                </p:column>
+            </p:dataTable>
+            <p:commandButton value="Back" onclick="history.back(); return false;"/>
+        </h:form>
+    </body>
+</html>

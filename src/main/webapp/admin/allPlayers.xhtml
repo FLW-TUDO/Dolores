@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Listet alle verfügbaren Spieler auf.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+    <h:head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <link href="./../resources/css/default.css" rel="stylesheet" type="text/css" />
+        <link href="./../resources/css/cssLayout.css" rel="stylesheet" type="text/css" />
+        <title>Dolores</title>
+        <script>
+
+
+
+            function ext() {
+
+
+
+                this.cfg.axes.yaxis.tickOptions = {
+                    formatString: '%d'
+                };
+                this.cfg.axes.xaxis.tickOptions = {
+                    formatString: '%d'
+                };
+
+
+                this.cfg.axes.xaxis.tickInterval = 1;
+                this.cfg.axes.yaxis.show = false;
+            }
+        </script>
+    </h:head>
+    <body>
+        <h:form id="form">
+            <p:commandButton value="Back" onclick="history.back(); return false;"/>
+            <p:commandButton value="Logout" action="#{userManagedBean.logout}"/>
+            <!-- Update all players in admin area with a call to the database-->
+            <p:dataTable value="#{admPM.players}" var="player" id="players">
+                <p:column>  
+                    <f:facet name="header">  
+                        <h:outputText value="ID" />  
+                    </f:facet>  
+                    <h:outputText value="#{player.id}" />
+                </p:column>
+                
+                
+                <p:column>  
+                    <f:facet name="header">  
+                        <h:outputText value="Passwort" />  
+                    </f:facet>  
+                    <h:outputText value="#{player.password}"/>
+                </p:column>
+                
+                
+                <p:column>
+                    <f:facet name="header">  
+                        <h:outputText value="Erstellungszeitpunkt" />  
+                    </f:facet>  
+                    <h:outputText value="#{player.insertDate}"/>
+                </p:column>
+                
+                <p:column>  
+                    <f:facet name="header">  
+                        <h:outputText value="Freigeschaltet" />  
+                    </f:facet>  
+                    <p:selectBooleanCheckbox value="#{player.unlocked}"/>
+                </p:column>
+                
+                <p:column>
+                    <p:commandButton rendered="#{!player.unlocked}" id="unlockbutton" value="Freischalten" update=":form:players"  action="#{admPM.unlockSelectetPlayer(player)}"/>  
+                    <p:commandButton rendered="#{player.unlocked}" id="lockbutton" value="Sperren" update=":form:players"  action="#{admPM.lockSelectetPlayer(player)}"/>  
+                </p:column>
+
+                <p:column>  
+                    <f:facet name="header">  
+                        <h:outputText value="Anzahl der Spiele" />  
+                    </f:facet>  
+                    <h:outputText value="#{admPM.getGamesCount(player)}" />  
+                </p:column>  
+
+                <p:column>  
+                    <f:facet name="header">  
+                        <h:outputText value="Seminar ID" />  
+                    </f:facet>  
+                    <h:outputText value="#{player.seminarId}" />  
+                </p:column>  
+
+                <p:column style="width:4%">  
+                    <p:commandButton id="viewButton" value="View Games" title="Spiele ansehen" action="#{admPM.viewGames(player)}">  
+                        <f:setPropertyActionListener value="#{player}" target="#{admPM.selectedPlayer}" />
+                    </p:commandButton>
+                </p:column>
+
+                <p:column style="width:4%">  
+                    <p:commandButton id="deletePlayerButton" update=":form:deleteDiaPlayer" oncomplete="deleteDiaPlayer.show()" value="Delete Player" title="Delete Player">  
+                        <f:setPropertyActionListener value="#{player}" target="#{admPM.selectedPlayer}" />  
+                    </p:commandButton>  
+                </p:column>
+                
+                <p:column style="width:4%">  
+                    <p:commandButton id="deleteGamesButton" update=":form:deleteDiaGames" oncomplete="deleteDiaGames.show()" value="Delete Games" title="Delete Games">  
+                        <f:setPropertyActionListener value="#{player}" target="#{admPM.selectedPlayer}" />  
+                    </p:commandButton>
+                </p:column>
+            </p:dataTable>
+
+            <!-- Dialog zum Löschen aller Spiele eines Spielers -->
+            <p:confirmDialog header="Delete All Games" widgetVar="deleteDiaGames" id="deleteDiaGames" showEffect="fade" hideEffect="explode">
+                <f:facet name="message">
+                    <p>Wollen sie alle Spiele wirklich löschen? </p>
+                    <br/>
+                    <p>Dies kann einige Zeit in Anspruch nehmen.</p>
+                </f:facet>
+                <!-- Update all players in admin area after click -->
+                <p:commandButton value="Bestätigen" action="#{admPM.deleteAllGamesFromSelectedPlayer}"
+                                 onclick="progressDlg.show()" onsuccess="progressDlg.hide()" oncomplete="deleteDiaGames.hide()" update=":form:players"/>
+                <p:commandButton value="Abbrechen" onclick="deleteDiaGames.hide();" type="button" />
+            </p:confirmDialog>
+            
+            <!-- Dialog zum Löschen eines Spieler inkl. aller seiner Spiele -->
+            <p:confirmDialog header="Delete Player" widgetVar="deleteDiaPlayer" id="deleteDiaPlayer" showEffect="fade" hideEffect="explode">
+                <f:facet name="message">
+                    <p>Wollen sie den Spieler <b>#{admPM.selectedPlayer.id}</b> wirklich löschen? </p>
+                    <br/>
+                    <p>Dies kann einige Zeit in Anspruch nehmen.</p>
+                </f:facet>
+                <!-- Update all players in admin area after click -->
+                <p:commandButton value="Bestätigen" action="#{admPM.deletePlayer}"
+                                 onclick="progressDlg.show()" onsuccess="progressDlg.hide()" oncomplete="deleteDiaPlayer.hide()" update=":form:players"/>
+                <p:commandButton value="Abbrechen" onclick="deleteDiaPlayer.hide();" type="button" />
+            </p:confirmDialog>
+            
+            <p:commandButton value="Back" onclick="history.back(); return false;"/>
+            <!-- Quelle: http://stackoverflow.com/questions/9972252/cancel-button-navigation-in-jsf -->
+            <p:commandButton value="Logout" action="#{userManagedBean.logout}"/>
+            
+            <p:dialog id="dialog" widgetVar="progressDlg" showHeader="false" closable="false" dynamic="true" resizable="false" modal="true"
+                style="width:300px; height:28px">
+                <p:graphicImage value="./../../resources/img/ajax-loader.gif"/>
+            </p:dialog>
+        </h:form>  
+    </body>
+</html>

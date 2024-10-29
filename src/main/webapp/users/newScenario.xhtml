@@ -1,0 +1,72 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core"
+      >
+    <h:head>
+        <title>#{msg['createGame.title']}</title> 
+        <link rel="icon" type="image/ico" href="./../resources/favicon.ico"/>
+       <f:event type="preRenderView" listener="#{gameInfoPM.check}" />
+
+    </h:head>
+    <h:body style="background-image: url('./../resources/img/background/hg2.jpg');">
+    <h:form><p:commandButton value="Back" onclick="history.back(); return false;"/></h:form>    
+        
+        
+        <f:view locale="#{languageBean.locale}">
+            <f:facet name="last">
+                <h:outputStylesheet library="css" name="errorFix.css"  />
+            </f:facet>
+            <div style="width: 485px ;
+                 margin-left: auto ;
+                 margin-right: auto ;">
+                <p:panel style="position: absolute;
+                         top: 20%;">
+                    <p:graphicImage value="./../resources/img/dolores_logo_cropped.png" style="width: 250px;
+                                    padding-bottom: 5px;
+                                    padding-left: 98px;"/>
+                    <h1 align="center"><h:outputText value="#{msg['createGame.otSpielstart']}"/></h1>
+
+                    
+                    
+
+                    <h:form>
+
+
+
+                        <h:panelGrid columns="3" id="grid" >
+                            <h:outputLabel value="#{msg['createGame.tfCorpName']}" for="corpName" />
+                            <p:inputText id="corpName" value="#{gameInfoPM.corpName}" title="CorpName" required="true" requiredMessage="#{msg['createGame.error']}"/>
+                            <p:message for="corpName"/>
+                            <h:outputLabel value="#{msg['createGame.tfPlayerName']}" for="playerName" />
+                            <p:inputText id="playerName" value="#{gameInfoPM.playerName}" title="PlayerName" required="true" requiredMessage="#{msg['createGame.error']}"/>
+                            <p:message for="playerName"/>
+                            <h:outputLabel value="#{msg['createGame.tfStrasse']}" for="street" />
+                            <p:inputText id="street" value="#{gameInfoPM.street}" title="Street" required="true" requiredMessage="#{msg['createGame.error']}"/>
+                            <p:message for="street"/>
+                            <h:outputLabel value="#{msg['createGame.tfOrt']}" for="location" />
+                            <p:inputText id="location" value="#{gameInfoPM.location}" title="Location" required="true" requiredMessage="#{msg['createGame.error']}"/>
+                            <p:message for="location"/>
+                        </h:panelGrid>
+                        <br/>
+                         <!--<p:commandButton type="submit" value="#{msg['createGame.btnSpielErstellen']}" action="#{gameInfoPM.newScenario}" style="margin-left: 130px;"/>-->
+
+
+                        <p:commandButton value="#{msg['createGame.btnSpielErstellen']}" action="#{gameInfoPM.newScenario}" style="margin-left: 130px;" update="grid"
+                                         onclick="progressDlg.show()" oncomplete="progressDlg.hide()" />
+                        
+                        <!--<p:commandButton value="Logout" action="#{userManagedBean.userLogout}"/>-->
+                        <p:commandButton value="Back" onclick="history.back(); return false;"/>
+                        
+                        <p:dialog id="dialog" widgetVar="progressDlg" showHeader="false" closable="false" dynamic="true" resizable="false" modal="true"
+                                  style="width:300px; height:28px">
+                            <p:graphicImage value="./../../resources/img/ajax-loader.gif"/>
+                        </p:dialog>
+                    </h:form> 
+                </p:panel>
+            </div>
+        </f:view>
+    </h:body>
+</html>

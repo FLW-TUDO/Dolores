@@ -1,0 +1,15 @@
+{ "flw.business.store.OrderDynamics" : { "alreadyCalc" : false,
+      "articleNumber" : 100101,
+      "complete" : false,
+      "deliveryAmount" : 139,
+      "newOrder" : true,
+      "order" : { "deliveryCosts" : 20,
+          "deliveryPeriod" : 12,
+          "deliveryWish" : 12,
+          "fixCosts" : 70,
+          "orderAmount" : 140,
+          "orderPeriod" : 8,
+          "realPurchasePrice" : 80
+        },
+      "orderno" : 524337
+    } }

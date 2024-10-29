@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"   
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+
+      xmlns:p="http://primefaces.org/ui">
+    <body>
+        <ui:composition id="footer">
+            <p:panel id="graphs" style="min-width: 1280px;">
+                <div id="footer" >
+
+                    
+
+
+                    <div id="balance_foot" style="float:left; ">
+
+
+                        <p:lineChart seriesColors="E95B2A"  id="linear" value="#{statPM.balanceChart}"  
+                                     extender="ext" minY="0" minX="1" style="height:150px; width: 300px; margin-top:-14px;" /> 
+                    </div>
+                    <div id="satisfaction_foot" style="float:left">
+
+                        <p:lineChart seriesColors="E95B2A" id="satisfaction"  value="#{statPM.satisfactionChart}"  
+                                      extender="ext" minY="0" minX="1" style="height:150px; width: 300px; margin-top:-14px;" /> 
+
+
+                    </div>
+                    <div id="buttons_foot" style="height: 120px;
+                         margin-top: 12px;">
+                        
+                        
+                        
+                    <p:button value="Statistiken" outcome="/users/statistics.xhtml?faces-redirect=true" style="height: 120px; width: 120px;"/>
+                  
+                    <p:button value="Übersicht Paletten" outcome="/users/overviewPallets.xhtml?faces-redirect=true" style="height: 120px;  width: 120px;"/>
+                    <p:button value="Nachrichten" outcome="/users/messages.xhtml?faces-redirect=true" style="height: 120px; width: 120px;"/>
+                    <p:button value="Hauptmenü" outcome="/users/main.xhtml?faces-redirect=true" style="height: 120px; width: 120px;"/>
+                   
+                    
+                    <div id="roundnumber_foot" style="float:left; margin-top: 40px; padding: 0 20px  0 20px">
+                        <p:outputLabel style="color: #666;
+                                       font-family: Arial, Helvetica, sans-serif;
+                                       font-size: 20px;" value="Runde: "/>
+
+
+                        <p:outputLabel style="color: #666;
+                                       font-family: Arial, Helvetica, sans-serif;
+                                       font-size: 20px;" value="#{gameInfoPM.currentState.roundNumber}"/>
+                    </div>
+                    </div>
+                    
+                    
+                </div> 
+            </p:panel>
+        </ui:composition>
+    </body>
+</html>

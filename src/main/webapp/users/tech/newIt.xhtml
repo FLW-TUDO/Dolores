@@ -1,0 +1,217 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <body>
+        <ui:composition template="/./templates/folderTemplate.xhtml">
+            <ui:define name="content">
+                <p:graphicImage value="./../../resources/img/infotechnik#{ImagePm.localeStringToLowercase}" styleClass="headerImg"/>
+
+                <h:form id="xy">
+
+                    <p:growl id="msg" />  
+
+                    <f:view>
+
+
+
+
+
+                        <p:fieldset  styleClass="one">
+
+                            <h:outputText value="#{msg['it.it']}" styleClass="hh1" />
+
+                            <p:confirmDialog id="basicId" header="#{msg['it.basic']}" widgetVar="basic">
+
+                                <facet name="message">
+
+                                    <p>#{msg['it.vertrag']} </p>
+
+
+
+
+                                </facet>
+                                <p:commandButton value="#{msg['global.dlgSubmit']}" action="#{ialPM.setItCost(0)}"
+                                                 oncomplete="basic.hide()" update=":xy"/>
+
+                                <p:commandButton value="#{msg['global.dlgCancel']}" onclick="basic.hide();" type="button" />
+
+                            </p:confirmDialog>
+
+                            <p:confirmDialog id="itId" header="#{msg['it.rechner']}" widgetVar="it">
+
+                                <facet name="message">
+
+                                    <p>#{msg['it.vertrag']} </p>
+                                    <p>#{msg['it.rechner1']}</p>
+
+                                    <p> #{msg['it.auswahl']}</p>
+                                    <br/>
+                                    <p> #{msg['it.rechner2']} </p>
+                                    <p> #{msg['it.rechner3']} </p>
+                                    <p> #{msg['it.rechner4']}</p>
+                                    <p> #{msg['it.rechner5']}</p>
+                                </facet>
+                                <p:commandButton value="#{msg['global.dlgSubmit']}" action="#{ialPM.setItCost(850)}"
+                                                 oncomplete="window.location.replace(window.location.href);" update=":xy"/>
+
+                                <p:commandButton value="#{msg['global.dlgCancel']}" onclick="it.hide();" type="button" />
+
+                            </p:confirmDialog>
+
+                            <p:confirmDialog id="it1Id" header="#{msg['it.batch']}" widgetVar="it1">
+
+                                <facet name="message">
+
+                                    <p>#{msg['it.vertrag']} </p>
+                                    <p>#{msg['it.batch1']}</p>
+
+                                    <p> #{msg['it.auswahl']}</p>
+                                    <br/>
+                                    <p> #{msg['it.batch2']} </p>
+                                    <p> #{msg['it.batch3']} </p>
+                                    <p> #{msg['it.batch4']}</p>
+                                    <p> #{msg['it.batch5']}</p>
+                                </facet>
+                                <p:commandButton value="#{msg['global.dlgSubmit']}" action="#{ialPM.setItCost(1300)}"
+                                                 oncomplete="window.location.replace(window.location.href);" update=":xy"/>
+
+                                <p:commandButton value="#{msg['global.dlgCancel']}" onclick="it1.hide();" type="button" />
+
+                            </p:confirmDialog>
+
+
+                            <p:confirmDialog id="it2Id" header="#{msg['it.funk']}" widgetVar="it2">
+
+                                <facet name="message">
+
+                                    <p>#{msg['it.vertrag']} </p>
+                                    <p>#{msg['it.funk1']}</p>
+
+                                    <p> #{msg['it.auswahl']}</p>
+                                    <br/>
+                                    <p> #{msg['it.funk2']} </p>
+                                    <p> #{msg['it.funk3']} </p>
+                                    <p> #{msg['it.funk4']}</p>
+                                    <p> #{msg['it.funk5']}</p>
+                                </facet>
+                                <p:commandButton value="#{msg['global.dlgSubmit']}" action="#{ialPM.setItCost(1600)}"
+                                                 oncomplete="window.location.replace(window.location.href);" update=":xy"/>
+
+
+
+                                <p:commandButton value="#{msg['global.dlgCancel']}" onclick="it2.hide();" type="button" />
+
+                            </p:confirmDialog>
+
+
+
+
+
+
+
+                            <!-- ############################################################### -->
+
+                            <p:panel styleClass="oneContent">
+                                #{msg['it.it1']} <h:outputText id="costs" value="#{ialPM.itCost} €" />
+
+                                <br/>
+                                <br/>
+
+                                <p:commandButton 
+                                    disabled="#{!ialPM.basePossible}"
+                                    value="#{msg['it.it2']}"
+                                    update=":xy:basicId"
+                                    oncomplete="basic.show()"
+                                    />
+                                <p:commandButton 
+                                    disabled="#{!ialPM.it1Possible}"
+                                    value="#{msg['it.it3']}"
+                                    update=":xy:itId"
+                                    oncomplete="it.show()"  />
+                                <p:commandButton 
+                                    disabled="#{!ialPM.it2Possible}"
+                                    value="#{msg['it.it4']}"
+                                    update=":xy:it1Id"
+                                    oncomplete="it1.show()"  />
+                                <p:commandButton 
+                                    disabled="#{!ialPM.it3Possible}"
+                                    value="#{msg['it.it5']}"
+                                    update=":xy:it2Id"
+                                    oncomplete="it2.show()"  />
+
+                                <br/>
+                                <br/>
+
+
+
+                                <p:selectBooleanCheckbox disabled="#{!ialPM.itOn}"  value="#{ialPM.optOrderChecked}" itemLabel="#{msg['it.it6']}">  
+                                    <p:ajax update="xy:msg" listener="#{ialPM.saveOptOrder}"/>  
+                                </p:selectBooleanCheckbox>  
+
+                                <br />
+                                <p:selectBooleanCheckbox  value="#{ialPM.notificationReorder}" disabled="#{!ialPM.itOn}" itemLabel="#{msg['it.it7']}">  
+                                    <p:ajax update="xy:msg" listener="#{ialPM.saveNotificationReorder}"/>  
+                                </p:selectBooleanCheckbox>  
+
+                                <br />
+                                <p:selectBooleanCheckbox  value="#{ialPM.notificationSafetyStock}" disabled="#{!ialPM.itOn}" itemLabel="#{msg['it.it8']}">  
+                                    <p:ajax update="xy:msg" listener="#{ialPM.saveNotificationSafetyStock}"/>  
+                                </p:selectBooleanCheckbox> 
+
+                                <br />
+                                <p:selectBooleanCheckbox  value="#{ialPM.statusReport}" disabled="#{!ialPM.itOn}" itemLabel="#{msg['it.it9']}">  
+                                    <p:ajax update="xy:msg" listener="#{ialPM.saveStatusReport}"/>  
+                                </p:selectBooleanCheckbox>  
+
+                                <br />
+                                <p:selectBooleanCheckbox  value="#{ialPM.lookInStorage}" disabled="#{!ialPM.itOn}" itemLabel="#{msg['it.it10']}">  
+                                    <p:ajax update="xy:msg" listener="#{ialPM.saveLookInStorage}"/>  
+                                </p:selectBooleanCheckbox>  
+
+                                <br />
+
+
+                            </p:panel>
+
+
+                        </p:fieldset>
+
+                        <p:fieldset  styleClass="one">
+
+                            <h:outputText value="#{msg['it.help']}" styleClass="hh1" />
+
+                            <p:panel styleClass="oneContent">
+
+                                <h:outputText value="#{msg['it.help1']}" />
+                                <h:outputText value="#{ialPM.paletteCount}"/>
+
+                                <br/>
+
+                                
+
+                                <p:selectOneRadio value="#{ialPM.loadingEquipIndex}" layout="pageDirection">  
+                                    <f:selectItem itemLabel="70 % - 0 € #{msg['it.prorunde']}" itemValue="0" />  
+                                    <f:selectItem itemLabel="80 % - 450 € #{msg['it.prorunde']}" itemValue="450" />  
+                                    <f:selectItem itemLabel="95 % - 800 € #{msg['it.prorunde']}" itemValue="800" />  
+                                     <p:ajax update="xy:msg" listener="#{ialPM.saveLoadingIndex}"/>  
+                                </p:selectOneRadio>  
+
+                            </p:panel>
+                        </p:fieldset>
+
+
+
+                    </f:view>
+
+                </h:form>
+
+            </ui:define>
+        </ui:composition>
+
+    </body>
+</html>

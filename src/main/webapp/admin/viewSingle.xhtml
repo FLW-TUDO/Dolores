@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Zeigt für einen Spieler alle seine Spiele an.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core">
+    <h:head>
+        <title>Übersicht</title>
+        <script>
+
+
+
+            function ext() {
+
+
+
+                this.cfg.axes.yaxis.tickOptions = {
+                    formatString: '%d'
+                };
+                this.cfg.axes.xaxis.tickOptions = {
+                    formatString: '%d'
+                };
+
+
+                this.cfg.axes.xaxis.tickInterval = 1;
+                this.cfg.axes.yaxis.show = false;
+            }
+        </script>
+    </h:head>
+    <body>
+        <h:form id="form">
+            
+            <p:poll interval="30" update="games" />  
+            <p:commandButton value="Back" onclick="history.back(); return false;"/>
+            <!-- Updates all games from a player by calling database-->
+            <p:dataTable id="games" value="#{admPM.singleGames}" var="game" >
+                <p:column>
+                    <br/>
+                    <p:panelGrid columns="2">
+                        <f:facet name="header">
+                            <h:outputText value="Allgemeine Informationen"/>
+                        </f:facet>
+                        <h:outputLabel value="Spieler: "  />
+                        <h:outputText value="#{admPM.selectedPlayer.id}"/>
+                        <h:outputLabel value="Spielnummer: "  />
+                        <h:outputText value="#{game.id}"/>
+                        <h:outputLabel value="Name des Unternehmens: "  />
+                        <h:outputText value="#{game.corpName}"/>
+<!--                        <h:outputLabel value="Straße: "  />
+                        <h:outputText value="#{game.street}"/>
+                        <h:outputLabel value="Ort: "  />
+                        <h:outputText value="#{game.location}"/>-->
+
+                    </p:panelGrid>
+
+
+                    <br/>
+
+
+                    <p:panelGrid columns="2"> 
+                        <f:facet name="header">
+                            <h:outputText value="Kennzahlen"/>
+                        </f:facet>
+                        <h:outputLabel value="Runde:  " for="" />
+                        <h:outputText value="#{game.currentState.roundNumber}" />
+                        <h:outputLabel value="Kundenzufriedenheit:  " for="" />
+                        <h:outputText value="#{game.currentState.satisfactionAsStr}" /> <!-- getValue('satisfaction') -->
+                        <h:outputLabel value="Durchschnittliche Kundenzufriedenheit: " for="" />
+                        <h:outputText value="#{game.averageSatisfaction}" />
+                        <h:outputLabel value="Kontostand: " for="" />
+                        <h:outputText value="#{game.currentState.accountBalanceAsStr}" /> <!-- getValue('accountbalance') -->
+                        
+
+
+                    </p:panelGrid>
+
+                    <br/>
+                </p:column>
+
+                <p:column>
+                    <f:facet name="header">
+                        <h:outputText value="Kontostand"/>
+                    </f:facet>
+                    <p:lineChart seriesColors="E95B2A" id="linear" value="#{admPM.getBalance(game)}" 
+                                 extender="ext" minY="0" minX="9" style="height:250px; width: 500px" />  
+                </p:column>
+                <p:column>
+                    <f:facet name="header">
+                        <h:outputText value="Kundenzufriedenheit"/>
+                    </f:facet>
+                    <p:lineChart seriesColors="E95B2A"  value="#{admPM.getSatisfaction(game)}"  
+                                 extender="ext" minY="0" minX="9" style="height:250px; width: 500px" />  
+                </p:column>
+                <!--
+                <p:column>           
+                    <p:commandButton value="Details" action="#{admPM.storeInfo(game)}"/> 
+                </p:column>
+                -->
+                <p:column>
+                    
+                    
+                    <p:commandButton value="Export" action="#{admPM.export(game)}">
+                        
+                    </p:commandButton>
+                </p:column>
+                <p:column>
+                    <p:commandButton rendered="#{!game.rollback}" id="unlockbutton" value="Zurück erlauben" update=":form:games"  action="#{admPM.allowRollback(game)}"/>  
+                    <p:commandButton rendered="#{game.rollback}" id="lockbutton" value="Zurück sperren" update=":form:games"  action="#{admPM.disableRollback(game)}"/>  
+                </p:column>
+                
+                <p:column style="width:4%">  
+                    <p:commandButton id="selectButton" update=":form:deleteDia" oncomplete="deleteDia.show()" value="Delete" title="Delete">  
+                        <f:setPropertyActionListener value="#{game}"  target="#{admPM.selectedGame}" />  
+                    </p:commandButton>  
+                </p:column>  
+                
+                <p:column style="width:4%">  
+                    <p:commandButton id="saveButton" update=":form:saveDia" oncomplete="saveDia.show()" value="Save" title="Save">  
+                        <f:setPropertyActionListener value="#{game}"  target="#{admPM.selectedGame}" />  
+                    </p:commandButton>  
+                </p:column>
+            </p:dataTable>
+            
+            <!--<p:commandButton id="loadButton" update=":form:loadDia" oncomplete="loadDia.show()" value="Load" title="Load"/>-->
+            <p:commandButton value="Back" onclick="history.back(); return false;"/>
+            
+            <!-- Dialog zum Löschen eines Spiels -->
+            <p:confirmDialog header="Delete" widgetVar="deleteDia" id="deleteDia" showEffect="fade" hideEffect="explode">
+                <f:facet name="message">
+                    <p>Wollen Sie das Spiel von  #{admPM.selectedGame.playerName} wirklich löschen? </p>
+                </f:facet>
+                <p:commandButton value="Bestätigen" action="#{admPM.deleteSingleGame}"
+                                 onclick="progressDlg.show(); deleteDia.hide()" onsuccess="progressDlg.hide()" update=":form:games"/>
+                <p:commandButton value="Abbrechen" onclick="deleteDia.hide();" type="button" />
+            </p:confirmDialog>
+            
+            <!-- Dialog zum Speichern eines Spiels -->
+            <p:confirmDialog header="Save" widgetVar="saveDia" id="saveDia" showEffect="fade" hideEffect="explode">
+                <f:facet name="message">
+                    <p>Wollen Sie das Spiel von  #{admPM.selectedGame.playerName} wirklich speichern? </p>
+                </f:facet>
+                <p:commandButton value="Bestätigen" action="#{admPM.saveSingleGame}" oncomplete="saveDia.hide()" update=":form:games"/>
+                <p:commandButton value="Abbrechen" onclick="saveDia.hide();" type="button" />
+            </p:confirmDialog>
+            
+            <!-- Ladebalken -->
+            <p:dialog id="dialog" widgetVar="progressDlg" showHeader="false" closable="false" dynamic="true" resizable="false" modal="true"
+                style="width:300px; height:28px">
+                <p:graphicImage value="./../../resources/img/ajax-loader.gif"/>
+            </p:dialog>
+        </h:form>
+    </body>
+</html>

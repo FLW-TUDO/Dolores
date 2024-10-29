@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"   
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+    <body>
+        <ui:composition id="menu">
+            <h:form>
+
+
+               <!--#{languageBean.language}-->
+
+               <h:link outcome="/users/main.xhtml?faces-redirect=true"> 
+                        <img src="./../../resources/img/dolores_logo_cropped_small.png" alt="dolores_logo"  style="margin-top: 8px;"/>
+                    </h:link>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
+
+
+                    <br/>
+                    <p:commandLink value="#{msg['menu.btnBestellwesen']}" action="#{orderPM.toOrderPage()}" />  
+                    <br/>
+                    <p:commandLink value="#{msg['menu.btnAuspuff']}" 
+
+                                   action="#{orderPM.toStorageInfoFromMenu(100101)}"/>  
+                    <br/>
+                    <p:commandLink value="#{msg['menu.btnBremsscheibe']}" 
+                                   action="#{orderPM.toStorageInfoFromMenu(100102)}"/>  
+                    <br/>
+                    <p:commandLink value="#{msg['menu.btnRueckleuchte']}" 
+                                   action="#{orderPM.toStorageInfoFromMenu(100103)}"/>
+
+                    <br/>
+                    <p:commandLink value="#{msg['menu.btnStossdaempfer']}" 
+                                   action="#{orderPM.toStorageInfoFromMenu(100104)}"/>  
+
+                    <br/>
+                    <br/>
+                    <h:link class="ui-commandlink ui-widget" value="#{msg['menu.btnPersonal']}"  outcome="employee/employee.xhtml?faces-redirect=true"/>  
+                    <br/>
+
+                    <h:link class="ui-commandlink ui-widget" value="#{msg['menu.btnStellenmarkt']}"  outcome="/users/employee/employee_market.xhtml?faces-redirect=true"/>
+
+                    <br/>
+                    <h:link class="ui-commandlink ui-widget" value="#{msg['menu.btnEinsatzplanung']}"  outcome="/users/employee/employee_ep_sal_market_1.xhtml?faces-redirect=true"/>
+
+                    <br/>
+                    <br/>
+                    <h:link class="ui-commandlink ui-widget" value="#{msg['menu.btnFoerdermittel']}" outcome="tech/conveyor.xhtml?faces-redirect=true" />
+                    <br/>
+                    <h:link class="ui-commandlink ui-widget" value="#{msg['menu.btnFMMarkt']}" outcome="tech/conveyor_market.xhtml?faces-redirect=true" />
+                    <br/>
+                    <br/>
+                    <h:link class="ui-commandlink ui-widget" value="#{msg['menu.btnIT']}" outcome="tech/newIt.xhtml?faces-redirect=true" />
+                    <br/>
+                    <br/>
+                    <h:link class="ui-commandlink ui-widget" value="#{msg['menu.btnOrga']}" outcome="orga/organisation.xhtml?faces-redirect=true"/>  
+                    <br/><br/><br/><br/>
+                    <p:commandButton value="#{msg['btn.mainmenu']}" 
+                                     action="/users/main.xhtml?faces-redirect=true"
+                                     />
+                    <br/>
+                    <br/>
+
+                    <div  id="roundnumber_foot" style="float:left;">
+                        <p:outputLabel  style="color: black;
+                                        font-family: Arial, Helvetica, sans-serif;
+                                        font-size: 20px;" value="#{msg['menu.otRoundNr']}"/>
+
+
+                        <p:outputLabel style="color: black;
+                                       font-family: Arial, Helvetica, sans-serif;
+                                       font-size: 20px;" value="#{gameInfoPM.currentState.roundNumber}"/>
+                    </div>
+                    
+
+
+
+
+                    <p:dialog id="dialog" widgetVar="progressDlg" showHeader="false" closable="false" dynamic="true" resizable="false" modal="true"
+                              style="width:300px; height:28px">
+                        <p:graphicImage value="./../../resources/img/ajax-loader.gif"/>  
+                    </p:dialog>
+                    <br/>
+                    <br/>
+                    <br/>
+
+                    <div>
+
+                        <h:outputLabel value="#{msg['side.kto']}" />
+                        <br/>
+                        <h:outputLabel value="#{gameInfoPM.currentState.getAccountBalanceAsDouble()}"> 
+                             <f:convertNumber type="currency"  maxFractionDigits="0" currencySymbol="€" locale="#{languageBean.language}" />
+                        </h:outputLabel> 
+                        <p:lineChart seriesColors="E95B2A"  id="linear" value="#{statPM.balanceChart}"  
+                                     style="height:150px; width: 150px;" /> 
+
+
+
+
+
+                        <h:outputLabel value="#{msg['side.zufriedenheit']}" />
+                        <br/>
+                        <h:outputLabel value="#{gameInfoPM.currentState.getSatisfactionAsDouble()}" style="">
+                            <f:convertNumber maxFractionDigits="0" minFractionDigits="0"/>
+                        </h:outputLabel> %
+                        <p:lineChart seriesColors="E95B2A" id="satisfactionn"  value="#{statPM.satisfactionChart}"  
+                                     style="height:150px; width: 150px;" /> 
+
+                    </div>
+
+
+                    <p:commandButton style="margin-top: 30px;"
+                                     value="#{msg['menu.btnLogout']}" 
+                                     action="#{userManagedBean.userLogout}"/> 
+                
+
+
+
+                <!--
+                    <p:menu styleClass="custom1">
+    
+                        <div id="test" class="customPanel" >
+                            <p:menuitem styleClass="custom2" value="Statistiken" outcome="statistics"/>
+                        </div>
+                        <p:menuitem styleClass="custom3" value="Übersicht Paletten" outcome="overviewPallets"/>
+    
+                        <p:menuitem styleClass="custom4" value="Nachrichten" outcome="messages" />
+                        <p:menuitem styleClass="custom5" value="Hauptmenü" outcome="/main.xhtml"/>
+                    </p:menu>
+                -->
+                <br/>
+                <br/>
+                <h:commandLink action="#{languageBean.changeLanguageMain('de_DE')}" value="Deutsch" /> | 
+                <h:commandLink action="#{languageBean.changeLanguageMain('en')}" value="English" />
+
+                <!--<p:graphicImage value="../resources/img/flw.png" style="width: 70px;" />-->
+                
+                <br/>
+                <p:commandButton value="#{msg['menu.btnPr']}" 
+                                     onclick="pR.show()" 
+                                     type="submit"
+                                     immediate="true"
+                                     rendered="#{gameInfoPM.info.rollback}"/>
+                
+                <p:dialog id="prevRound"  header="#{msg['menu.dlgHeadPrevRound']}" widgetVar="pR" modal="true" style=" width:800px; height:800px" resizable="false">
+                        <p><h:outputText value="#{msg['menu.dlgPrev']}" /></p>
+                        <br/>
+                        <p:commandButton id="buttonPrevDLG" styleClass="small_button" type="submit" value="#{msg['global.dlgSubmit']}" immediate="true"
+                                         action="#{gameInfoPM.previousRound()}" onclick="pR.hide();
+                                                 progressDlg.show()" oncomplete="progressDlg.hide()">
+                        </p:commandButton>
+                        <p:commandButton value="#{msg['global.dlgCancel']}" onclick="pR.hide();" type="button" />
+                    </p:dialog>
+            </h:form>
+        </ui:composition>
+    </body>
+</html>

@@ -1,0 +1,325 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <body>
+        <ui:composition template="/./templates/folderTemplate.xhtml">
+            <ui:define name="content">
+                <p:graphicImage value="./../../resources/img/foerdermittel#{ImagePm.localeStringToLowercase}" styleClass="headerImg" />
+
+
+                <h:form id="tableForm">
+
+                    <p:growl id="msg" />  
+
+                    <p:confirmDialog id="contractId" header="#{msg['conv.contract']}" widgetVar="contract">
+
+                        <f:facet name="message">
+                            <p>#{msg['conv.contract1']} #{msg[conveyor.clickedDynamics.name]} #{msg['conv.contract2']} </p>
+                            <p>#{msg['conv.contract3']} #{conveyor.clickedDynamics.maintenanceCost} €.</p>
+                        </f:facet>
+                        <p:commandButton value="#{msg['global.dlgSubmit']}" action="#{conveyor.enableMaintenance}"
+                                         oncomplete="contract.hide()" update=":tableForm:tableShop, :tableForm:cost"/>
+
+                        <p:commandButton value="#{msg['global.dlgCancel']}" onclick="contract.hide();" type="button" />
+
+                    </p:confirmDialog>
+
+                    <p:confirmDialog id="cancelId" header="#{msg['conv.cancel']}" widgetVar="cancel">
+
+                        <f:facet name="message">
+                            <p>#{msg['conv.cancel1']} #{msg[conveyor.clickedDynamics.name]} #{msg['conv.cancel2']} </p>
+
+                            <p>#{msg['conv.cancel3']} #{conveyor.clickedDynamics.maintenanceCost} €.</p>
+                        </f:facet>
+                        <p:commandButton value="#{msg['global.dlgSubmit']}" action="#{conveyor.disableMaintenance}"
+                                         oncomplete="cancel.hide()" update=":tableForm:tableShop, :tableForm:cost"/>
+
+                        <p:commandButton value="#{msg['global.dlgCancel']}" onclick="cancel.hide();" type="button" />
+
+                    </p:confirmDialog>
+                    <p:confirmDialog id="overhaulId" header="#{msg['conv.overhaul']}" widgetVar="overhaul">
+
+                        <f:facet name="message">
+                            <p>#{msg['conv.overhaul1']} #{msg[conveyor.clickedDynamics.name]} #{msg['conv.overhaul2']} </p>
+
+                            <p>#{msg['conv.overhaul3']} #{conveyor.clickedDynamics.overhaul_costs} €.</p>
+                        </f:facet>
+                        <p:commandButton value="#{msg['global.dlgSubmit']}" action="#{conveyor.doOverhaul()}"
+                                         oncomplete="overhaul.hide()" update=":tableForm:tableShop"/>
+
+                        <p:commandButton value="#{msg['global.dlgCancel']}" onclick="overhaul.hide();" type="button" />
+
+                    </p:confirmDialog>
+
+
+
+
+
+                    <p:confirmDialog id="sellId" header="#{msg['conv.sell']}" widgetVar="sell">
+
+                        <f:facet name="message">
+                            <p>#{msg['conv.sell1']}  #{msg[conveyor.clickedDynamics.name]} #{msg['conv.sell2']} </p>
+                            <p>#{msg['conv.sell3']} #{conveyor.clickedDynamics.currentValue} €.</p>
+                        </f:facet>
+                        <p:commandButton value="#{msg['global.dlgSubmit']}" action="#{conveyor.sell}"
+                                         oncomplete="sell.hide()" update=":tableForm:tableShop"/>
+
+                        <p:commandButton value="#{msg['global.dlgCancel']}" onclick="sell.hide();" type="button" />
+
+                    </p:confirmDialog>
+
+
+                    <f:view>
+
+
+                        <p:fieldset  styleClass="one">
+
+                            <h:outputText styleClass="hh1" value="#{msg['conv.aktuell']}" />
+
+                            <p:dataTable id="tableShop" value="#{conveyor.currentDynamics}"  var="item" styleClass="oneContent">
+
+                                <p:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="#{msg['conv.aktuell1']}"/>
+                                    </f:facet>
+                                    <h:outputText value="#{msg[item.conveyor.name]}"/>
+                                </p:column>
+                                <p:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="#{msg['conv.aktuell2']}"/>
+                                    </f:facet>
+                                    <p:selectOneMenu value="#{item.process}" disabled="#{item.sold}">
+                                        <f:selectItem itemValue="0" itemLabel="#{msg['global.en']}" />
+                                        <f:selectItem itemValue="2" itemLabel="#{msg['global.la']}" />
+                                        <f:selectItem itemValue="4" itemLabel="#{msg['global.ve']}" />
+                                        <p:ajax update=":tableForm:msg"
+                                                listener="#{conveyor.ajaxUpdateConveyorDynamics()}" />  
+                                    </p:selectOneMenu>
+
+                                </p:column>
+
+                                <p:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="#{msg['conv.aktuell31']} &#10; #{msg['conv.aktuell32']}" style="white-space:pre;"/>
+                                    </f:facet>
+
+                                    <h:outputText value="#{item.conditionPercentage}">
+                                        <f:convertNumber minFractionDigits="2" maxFractionDigits="2"/>
+                                    </h:outputText>
+                                </p:column>
+
+
+                                <p:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="#{msg['conv.aktuell4']}&#10;#{msg['conv.aktuell5']}" style="white-space:pre;"/>
+                                    </f:facet>
+
+                                    <h:outputText value="#{item.periodBought}"/>
+                                </p:column>
+
+                                <!--
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="#{msg['conv.aktuell6']}"/>
+                                </f:facet>
+                                <h:outputText value="#{msg['global.yes']}" rendered="#{item.maintenanceEnabled}" />
+                                <h:outputText value="#{msg['global.no']}" rendered="#{!item.maintenanceEnabled}" />
+                            </p:column>
+                                -->
+                                <p:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="#{msg['conv.aktuell7']}"/>
+                                    </f:facet>
+                                    <p:commandButton 
+
+                                        update=":tableForm:contractId"
+                                        action="#{conveyor.setClickedDynamics(item)}" 
+                                        rendered="#{!item.maintenanceEnabled}"
+                                        disabled="#{item.sold}"
+                                        value="#{msg['conv.aktuell8']}" 
+                                        oncomplete="contract.show()"  >
+                                        <f:setPropertyActionListener target="#{conveyor.clickedDynamics}" value="#{item}" />
+                                    </p:commandButton>
+                                    <p:commandButton
+                                        disabled="#{item.sold}"
+                                        update=":tableForm:cancelId"
+                                        action="#{conveyor.setClickedDynamics(item)}" 
+                                        rendered="#{item.maintenanceEnabled}"
+                                        value="#{msg['conv.aktuell9']}" 
+                                        oncomplete="cancel.show()"  >
+                                        <f:setPropertyActionListener target="#{conveyor.clickedDynamics}" value="#{item}" />
+                                    </p:commandButton>
+                                </p:column>
+                                <!--
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="#{msg['conv.aktuell10']}"/>
+                                </f:facet>
+                                <h:outputText value="#{msg['global.yes']}" rendered="#{item.overhaul}" />
+                                <h:outputText value="#{msg['global.no']}" rendered="#{!item.overhaul}" />
+                            </p:column>
+                                -->
+
+                                <p:column>
+                                    <p:commandButton 
+                                        disabled="#{item.sold}"
+                                        update=":tableForm:overhaulId"
+                                        action="#{conveyor.setClickedDynamics(item)}" 
+                                        rendered="#{!item.overhaul}"
+                                        value="#{msg['conv.aktuell10']}" 
+                                        oncomplete="overhaul.show()"  >
+                                        <f:setPropertyActionListener target="#{conveyor.clickedDynamics}" value="#{item}" />
+                                    </p:commandButton>
+                                </p:column>
+                                <!--
+                            <p:column>
+                                <p:commandButton
+                                    update=":tableForm:sellId"
+                                    action="#{conveyor.setClickedDynamics(item)}" 
+                                    rendered="#{!item.sold}"
+                                    value="#{msg['conv.aktuell11']}" 
+                                    oncomplete="sell.show()"  >
+                                    <f:setPropertyActionListener target="#{conveyor.clickedDynamics}" value="#{item}" />
+                                </p:commandButton>
+                                <h:outputText rendered="#{item.sold}" value="#{msg['conv.aktuell12']}">  </h:outputText>
+                            </p:column>
+                                -->
+                            </p:dataTable>
+                        </p:fieldset>
+
+
+                        <p:fieldset styleClass="two" style="margin-bottom: 7px;">
+
+
+                            <h:outputText value="#{msg['conv.auslastung']}" styleClass="hh1" />
+
+                            <p:panelGrid columns="3" styleClass="oneContent">
+
+                                <!-- eventuell mit <p:row> und <p:column> arbeiten TODO --> 
+
+                                <h:outputText value="#{msg['conv.auslastung1']}"/>
+                                <h:outputText value="#{msg['conv.auslastung2']}"/>
+                                <h:outputText value="#{msg['conv.auslastung3']}"/>
+
+                                <h:outputText value="#{msg['global.en']}"/>
+                                <h:outputText value="#{conveyor.conveyorCount[0]}"/>
+                                <h:outputLabel value="#{conveyor.conveyorWorkload[0]}">
+                                     <f:convertNumber minFractionDigits="2" maxFractionDigits="2"/>
+                                </h:outputLabel>
+
+                                <h:outputText value="#{msg['global.la']}"/>
+                                <h:outputText value="#{conveyor.conveyorCount[1]}"/>
+                                <h:outputLabel value="#{conveyor.conveyorWorkload[1]}">
+                                     <f:convertNumber minFractionDigits="2" maxFractionDigits="2"/>
+                                </h:outputLabel>
+
+                                <h:outputText value="#{msg['global.ve']}"/>
+                                <h:outputText value="#{conveyor.conveyorCount[2]}"/>
+                                <h:outputLabel value="#{conveyor.conveyorWorkload[2]}">
+                                     <f:convertNumber minFractionDigits="2" maxFractionDigits="2"/>
+                                </h:outputLabel>
+
+
+
+
+                            </p:panelGrid>
+
+                        </p:fieldset>
+
+
+
+
+
+
+
+
+
+
+                        <p:fieldset id="cost"  styleClass="two" style="height: 126px;">
+
+                            <h:outputText value="#{msg['conv.cost']}" styleClass="hh1" />
+
+                            <p:panelGrid columns="2" styleClass="oneContent">
+                                <h:outputLabel value="#{msg['conv.cost1']} "/>
+                                <h:outputLabel value="#{msg['conv.cost2']} "/>
+                                <h:outputLabel value="#{conveyor.repairCost} €"/>
+                                <h:outputLabel value="#{conveyor.repairTime} min">
+                                     <f:convertNumber minFractionDigits="1" maxFractionDigits="0"/>
+                                </h:outputLabel>
+                            </p:panelGrid>
+                            <br/>
+                            <p:panelGrid columns="2" id="cost2">
+                                <h:outputLabel value="#{msg['conv.cost3']}"/>
+                                <h:outputLabel value="#{conveyor.maintenanceCost} € "/>
+
+                            </p:panelGrid>
+
+                        </p:fieldset>
+
+
+
+
+
+                        <p:fieldset id="convFuture" styleClass="one">
+
+                            <h:outputText value="#{msg['conv.future']}" styleClass="hh1" />
+
+                            <p:dataTable value="#{conveyor.futureDynamics}"  var="item" styleClass="oneContent" >
+                                <p:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="#{msg['conv.future1']}"/>
+                                    </f:facet>
+                                    <h:outputText value="#{msg[item.name]}"/>
+                                </p:column>
+
+
+
+                                <p:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="#{msg['conv.future2']}" style="white-space:pre;"/>
+                                    </f:facet>
+                                    <h:outputText value="#{item.periodBought}"/>
+                                </p:column>
+
+
+
+
+
+
+
+                                <p:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="#{msg['conv.future3']}" style="white-space:pre;"/>
+                                    </f:facet>
+
+                                    <h:outputText value="#{item.roundForDelivery}" /> 
+
+                                </p:column>
+
+
+
+                            </p:dataTable>
+                        </p:fieldset>
+
+
+
+
+
+
+
+
+
+                    </f:view>
+
+                </h:form>
+
+            </ui:define>
+        </ui:composition>
+
+    </body>
+</html>

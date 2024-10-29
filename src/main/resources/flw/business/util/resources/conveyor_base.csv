@@ -1,0 +1,8 @@
+3Rad Elektro-Gablestapler;720;45000;1;4.4;4000;500;true;true;50;1;
+4Rad Diesel-Gabelstapler (mit Filter);720;85000;2;5.2;8000;900;true;true;90;2;
+4Rad Diesel-Gabelstapler (ohne Filter);360;75000;1;5.1;7000;800;600;true;true;80;3;
+4Rad Elektro-Gabelstapler;720;55000;2;4.8;5000;600;true;true;50;4;
+4Rad Gas-Gabelstapler;720;65000;3;5.3;6000;700;true;true;70;5;
+Elektrohandhubwagen;1440;6000;2;1.6;2000;300;false;false;20;6;
+Geh-Hochhubwagen;1440;13000;2;1.6;3000;400;true;false;40;7;
+Handgabelhubwagen;1440;4000;1;1.0;1000;200;false;false;20;8;

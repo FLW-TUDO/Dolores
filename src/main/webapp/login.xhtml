@@ -1,0 +1,81 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+    <h:head>
+
+        <title>Login Form</title>
+    </h:head>
+    <h:body style="background-image: url('./../resources/img/background/hg2.jpg');">
+        <h:form> <p:commandButton value="Back" onclick="history.back(); return false;"/> </h:form>
+        <div style="width: 420px ;
+             margin-left: auto ;
+             margin-right: auto ;
+             text-align: center;">
+            <f:view locale="#{languageBean.locale}">
+                <h:form id="fLogin" prependId="false"
+                        onsubmit="document.getElementById('fLogin').action = 'j_security_check';">
+                    <p:growl id="msg" />
+                    <p:panel style="position: absolute;
+                                     top: 25%;">
+                        <p:panelGrid columns="2" >
+
+                            <f:facet name="header">
+                                Login
+                            </f:facet>
+
+                            <h:outputLabel for="j_username" value="#{msg['login.tfBenutzer']}"/>
+                            <p:inputText id="j_username" required="true" value=""/>
+
+                            <h:outputLabel for="j_password" value="#{msg['login.tfPassword']}"/>
+                            <p:password id="j_password" required="true" value="" feedback="false"/>
+
+                            <f:facet name="footer">
+                                <p:commandButton value="#{msg['login.btnLogin']}" type="submit" ajax="false"/>
+                                <p:commandLink style="margin-left: 10px" value="#{msg['login.btnNewUser']}" process="@this" update=":fDialog:newUserPanel" oncomplete="newUserDialog.show()"/>
+                            </f:facet>
+                        </p:panelGrid>
+                    </p:panel>
+                </h:form>
+
+
+                <h:form id="fDialog" >
+                    <p:dialog id="newUserDialog" header="#{msg['login.new_user']}" widgetVar="newUserDialog" modal="true" resizable="false"
+                              showEffect="clip" hideEffect="fold">
+                        <p:outputPanel id="newUserPanel">
+                            <p:messages id="msgUser" showDetail="true" autoUpdate="false"/>
+                            <h:panelGrid columns="2" cellpadding="4">
+                                <h:outputText value="#{msg['login.tfEmail']}" />
+                                <p:inputText id="txEmail" value="#{userManagedBean.email}" required="true" requiredMessage="The field email is required."/>
+                                <h:outputText value="#{msg['login.tfPw']}" />
+                                <p:password id="txPassword" value="#{userManagedBean.password}" maxlength="20" required="true" match="txPassword2" requiredMessage="#{msg['login.pwreq']}" validatorMessage="#{msg['login.pwmatch']}" feedback="true"/>
+                                <h:outputText value="#{msg['login.tfPw']}" />
+                                <p:password id="txPassword2" value="#{userManagedBean.password}" maxlength="20" required="true" requiredMessage="#{msg['login.pwreq']}" validatorMessage="#{msg['login.pwmatch']}"/>
+                                <p:commandButton icon="ui-icon-check" value="OK" update=":fLogin:msg" actionListener="#{userManagedBean.saveUser}"
+                                                 onclick="progressDlg.show()" oncomplete="progressDlg.hide()" />
+                            </h:panelGrid>
+                        </p:outputPanel>
+                    </p:dialog>
+
+                    <p:dialog id="dialog" widgetVar="progressDlg" showHeader="false" closable="false" dynamic="true" resizable="false" modal="true"
+                              style="width:300px; height:28px">
+                        <p:graphicImage value="./../../resources/img/ajax-loader.gif"/>  
+                    </p:dialog>
+
+                </h:form>
+
+                <!--
+                
+                
+                                                    onclick="nR.show()" 
+                                                     type="submit"
+                                                     immediate="true"
+                
+                
+                -->
+            </f:view>
+        </div>
+    </h:body>
+</html>

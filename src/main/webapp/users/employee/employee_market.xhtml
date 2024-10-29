@@ -1,0 +1,283 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <body>
+        <ui:composition template="/./templates/folderTemplate.xhtml">
+            <ui:define name="content">
+
+                
+                <p:graphicImage value="./../../resources/img/stellenmarkt#{ImagePm.localeStringToLowercase}" styleClass="headerImg" />
+                
+                <f:view>
+
+
+
+
+                    <h:form id="tableForm">
+
+
+                        <p:confirmDialog id="fullId"  header="#{msg['employee.dlgNewHead1']}" widgetVar="full">
+
+                            <f:facet name="message">
+                                <p>#{msg['employee.dlgeNewBody1']} #{employee.clickedDynamics.firstName} #{employee.clickedDynamics.lastName} 
+                                    #{msg['employee.dlgeNewBody10']} </p>
+
+                                <p>#{msg['employee.dlgeNewBody3']} #{employee.clickedDynamics.salary} €.</p>
+                                <p>#{msg['employee.dlgeNewBody4']}</p>
+                                <p>#{msg['employee.dlgeNewBody5']} #{employee.roundNumber + 3}.</p>
+                            </f:facet>
+                            <p:commandButton value="#{msg['global.dlgSubmit']}" action="#{employee.employ(0)}"
+                                             oncomplete="full.hide()" update=":tableForm:tableEmp, :tableForm:future"/>
+
+                            <p:commandButton value="#{msg['global.dlgCancel']}" onclick="full.hide();" type="button" />
+
+                        </p:confirmDialog>
+
+
+                        <p:confirmDialog id="partId" header="#{msg['employee.dlgNewHead2']}" widgetVar="part">
+
+                            <f:facet name="message">
+                                <p>#{msg['employee.dlgeNewBody1']} #{employee.clickedDynamics.firstName} #{employee.clickedDynamics.lastName} 
+                                    #{msg['employee.dlgeNewBody2']} </p>
+
+                                <p>#{msg['employee.dlgeNewBody3']} 
+                                    <h:outputLabel value="#{employee.clickedDynamics.salary * 0.6}">
+                                        <f:convertNumber type="currency"  maxFractionDigits="0" currencySymbol="€" locale="#{languageBean.language}"/>
+                                    </h:outputLabel> .</p>
+                                <p>#{msg['employee.dlgeNewBody4']}</p>
+                                <p>#{msg['employee.dlgeNewBody5']} #{employee.roundNumber + 3}.</p>
+                            </f:facet>
+                            <p:commandButton value="#{msg['global.dlgSubmit']}" action="#{employee.employ(1)}"
+                                             oncomplete="part.hide()" update=":tableForm:tableEmp, :tableForm:future"/>
+
+                            <p:commandButton value="#{msg['global.dlgCancel']}" onclick="part.hide();" type="button" />
+
+                        </p:confirmDialog>
+                        
+                        <!-- Kurzzeitbeschäftigte -->
+                        
+                        <p:confirmDialog id="tempId" header="#{msg['employee.dlgNewHead3']}" widgetVar="temp">
+
+                            <f:facet name="message">
+                                <p>#{msg['employee.dlgeNewBody1']} #{employee.clickedDynamics.firstName} #{employee.clickedDynamics.lastName} 
+                                    #{msg['employee.dlgeNewBody11']} </p>
+
+                                <p>#{msg['employee.dlgeNewBody3']} 
+                                    <h:outputLabel value="#{employee.clickedDynamics.salary * 0.9}">
+                                        <f:convertNumber type="currency"  maxFractionDigits="0" currencySymbol="€" locale="#{languageBean.language}"/>
+                                    </h:outputLabel> .</p>
+                                <p>#{msg['employee.dlgeNewBody6']}</p>
+                                <p>#{msg['employee.dlgeNewBody5']} #{employee.roundNumber + 1}.</p>
+                            </f:facet>
+                            <p:commandButton value="#{msg['global.dlgSubmit']}" action="#{employee.employ(2)}"
+                                             oncomplete="temp.hide()" update=":tableForm:tableEmp, :tableForm:future"/>
+
+                            <p:commandButton value="#{msg['global.dlgCancel']}" onclick="temp.hide();" type="button" />
+
+                        </p:confirmDialog>
+                        
+                        
+
+
+                        <p:fieldset styleClass="one">
+                            
+                            <h:outputText value="#{msg['employee.markt']}" styleClass="hh1" />
+                            
+                            <p:dataTable value="#{employee.marketEmployeeDynamicsModel}" var="emp" id="tableEmp" styleClass="oneContent" >
+
+
+                                <p:column >
+                                    <f:facet name="header">
+                                        <h:outputText value="#{msg['order.name']}"/>
+                                    </f:facet>
+                                    <h:outputText  value="#{emp.employee.firstName} " />
+                                    <h:outputText  value="#{emp.employee.lastName}" />
+
+                                </p:column>
+                                
+                                <p:column>
+                                    <f:facet name="header">
+                                        <!--<h:outputText value="#{msg['employee.nWage1']}&#10;#{msg['employee.nWage2']}" style="white-space:pre;"/> -->
+                                        <h:outputText value="#{msg['employee.wage']}"/>
+                                       
+                                    </f:facet>
+                                    <h:outputText  value="#{emp.salary} €" />
+                                </p:column>
+                                <p:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="#{msg['employee.fp1']} &#10; #{msg['employee.fp2']} &#10; #{msg['employee.fp3']}" style="white-space:pre;"/>
+                                    </f:facet>
+
+                                    <h:outputText value="#{msg['global.yes']}" rendered="#{emp.hasForkliftPermit()}" />
+                                    <h:outputText value="#{msg['global.no']}" rendered="#{!emp.hasForkliftPermit()}" />
+
+                                </p:column>
+                                <p:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="#{msg['employee.sec1']} &#10; #{msg['employee.sec2']}" style="white-space:pre;"/>
+                                    </f:facet>
+
+                                    <h:outputText value="#{msg['global.yes']}" rendered="#{emp.hasSecurityTraining()}" />
+                                    <h:outputText value="#{msg['global.no']}" rendered="#{!emp.hasSecurityTraining()}" />
+
+                                </p:column>
+                                <p:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="#{msg['employee.qm1']} &#10; #{msg['employee.qm2']} &#10; #{msg['employee.qm3']}" style="white-space:pre;"/>
+                                    </f:facet>
+
+
+                                    <h:outputText value="#{msg['global.yes']}" rendered="#{emp.hasQMSeminar()}" />
+                                    <h:outputText value="#{msg['global.no']}" rendered="#{!emp.hasQMSeminar()}" />
+                                </p:column>
+
+                                <p:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="#{msg['employee.nPro1']}&#10;#{msg['employee.nPro2']}" style="white-space:pre;"/>
+                                    </f:facet>
+
+                                    
+                                    <p:selectOneMenu value="#{emp.process}">
+                                        <f:selectItem itemValue="0" itemLabel="#{msg['global.en']}" />
+                                        <f:selectItem itemValue="1" itemLabel="#{msg['global.wv']}" />
+                                        <f:selectItem itemValue="2" itemLabel="#{msg['global.la']}" />
+                                        <f:selectItem itemValue="3" itemLabel="#{msg['global.wk']}" />
+                                        <f:selectItem itemValue="4" itemLabel="#{msg['global.ve']}" />
+                                    </p:selectOneMenu>
+                                </p:column>
+                                
+
+                                <p:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="#{msg['employee.buy']}" style="white-space:pre;"/>
+                                    </f:facet>
+                                    <p:commandButton 
+                                        update=":tableForm:fullId"
+                                        action="#{employee.setClickedDynamics(emp)}" 
+                                        value="#{msg['employee.asFull']}" 
+                                        oncomplete="full.show()">
+                                        <f:setPropertyActionListener target="#{employee.clickedDynamics}" value="#{emp}" />
+                                    </p:commandButton>
+
+
+
+                                </p:column>
+                                <p:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="#{msg['employee.buy']}" style="white-space:pre;"/>
+                                    </f:facet>
+                                    <p:commandButton 
+                                        update=":tableForm:partId"
+                                        action="#{employee.setClickedDynamics(emp)}" 
+                                        value="#{msg['employee.asPart']}" 
+                                        oncomplete="part.show()"  >
+                                        <f:setPropertyActionListener target="#{employee.clickedDynamics}" value="#{emp}" />
+                                    </p:commandButton>
+
+                                </p:column>
+                                
+                                <!-- temp Angestellter Einstellungsdialog -->
+                                
+                                <p:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="#{msg['employee.buy']}" style="white-space:pre;"/>
+                                    </f:facet>
+                                    <p:commandButton 
+                                        update=":tableForm:tempId"
+                                        action="#{employee.setClickedDynamics(emp)}" 
+                                        value="#{msg['employee.asTemp']}" 
+                                        oncomplete="temp.show()"  >
+                                        <f:setPropertyActionListener target="#{employee.clickedDynamics}" value="#{emp}" />
+                                    </p:commandButton>
+
+                                </p:column>
+
+                            </p:dataTable>
+                        </p:fieldset>
+                        
+                        <p:fieldset styleClass="one" id="future">
+                            
+                            <h:outputText styleClass="hh1" value="#{msg['employee.listFuture']}" />
+                            
+                            <p:dataTable value="#{employee.futureDynamics}" var="item" scrollHeight="350" scrollWidth="1200" styleClass="oneContent">
+                                <p:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="#{msg['order.name']}"/>
+                                    </f:facet>
+                                    <h:outputText value="#{item.firstName} "/>
+                                    <h:outputText value="#{item.lastName}"/>
+                                </p:column>
+                               
+
+                             
+
+                                <p:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="#{msg['employee.since']} &#10; #{msg['employee.since2']}" style="white-space:pre;"/>
+                                    </f:facet>
+                                    <h:outputText value="#{item.employmentPeriode}"/>
+                                </p:column>
+                                
+                                <!--
+                                <p:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="#{msg['employee.until']} &#10; #{msg['employee.until2']}" style="white-space:pre;"/>
+                                    </f:facet>
+                                    <h:outputText value="#{item.endPeriode}" rendered="#{!item.hasNoEndPeriod()}"/>
+                                    <h:outputText value="#{msg['employee.type']}" rendered="#{item.hasNoEndPeriod()}" />
+                                </p:column>
+-->
+                                
+                                <p:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="#{msg['employee.fp']}"/>
+                                    </f:facet>
+
+                                    <h:outputText value="#{msg['global.yes']}" rendered="#{item.hasForkliftPermit()}" />
+                                    <h:outputText value="#{msg['global.no']}" rendered="#{!item.hasForkliftPermit()}" />
+
+                                </p:column>
+                                <p:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="#{msg['employee.sec']}"/>
+                                    </f:facet>
+
+                                    <h:outputText value="#{msg['global.yes']}" rendered="#{item.hasSecurityTraining()}" />
+                                    <h:outputText value="#{msg['global.no']}" rendered="#{!item.hasSecurityTraining()}" />
+
+                                </p:column>
+                                <p:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="#{msg['employee.qm']}"/>
+                                    </f:facet>
+
+
+                                    <h:outputText value="#{msg['global.yes']}" rendered="#{item.hasQMSeminar()}" />
+                                    <h:outputText value="#{msg['global.no']}" rendered="#{!item.hasQMSeminar()}" />
+                                </p:column>
+                                <p:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="#{msg['employee.wage']}"/>
+                                    </f:facet>
+                                    <h:outputText value="#{item.salary} €" />
+                                </p:column>
+
+
+
+                            </p:dataTable>
+                        </p:fieldset>
+                    </h:form>
+
+                </f:view>
+
+            </ui:define>
+        </ui:composition>
+
+    </body>
+</html>
+

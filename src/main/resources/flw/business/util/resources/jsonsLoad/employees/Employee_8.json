@@ -1,0 +1,14 @@
+{ "flw.business.store.EmployeeDynamics" : { "employee" : { "age" : 16,
+          "contractType" : 2,
+          "employmentPeriode" : 11,
+          "endPeriode" : 13,
+          "firstName" : "Karin",
+          "gender" : false,
+          "lastName" : "Richter"
+        },
+      "motivationPercentage" : 0.79,
+      "process" : 1,
+      "qualifications" : 0,
+      "roundnumber" : 10,
+      "salary" : 85
+    } }

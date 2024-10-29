@@ -1,0 +1,212 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <body>
+        <ui:composition template="/templates/folderTemplate.xhtml">
+            <ui:define name="content">
+
+
+                <p:graphicImage value="./../../resources/img/cash#{ImagePm.localeStringToLowercase}" style="border-top-right-radius: 4px;
+                                width: 849px;" />
+
+                
+                <f:view locale="#{languageBean.locale}">
+                    
+                     <h:form>
+                        <p:button value="#{msg['main.btnCash']}" outcome="cash.xhtml?faces-redirect=true"/>
+                        <p:button value="#{msg['main.btnInc']}" outcome="incomingStats.xhtml?faces-redirect=true"/>
+                        <p:button value="#{msg['main.btnStorage']}" outcome="storageStats.xhtml?faces-redirect=true"/>
+                        <p:button value="#{msg['main.btnOut']}" outcome="outgoingStats.xhtml?faces-redirect=true"/>
+                        <p:button value="#{msg['main.btnStat']}" outcome="/users/statistics.xhtml?faces-redirect=true" />
+                        <br/>
+                        <br/>
+                        <br/>
+                    </h:form>
+
+                    <p:fieldset  styleClass="one">
+                        
+                        <h:outputLabel value="#{msg['main.btnCash']}" styleClass="hh1" />
+                        
+                        <p:panelGrid columns="4" styleClass="oneContent">
+                            
+                            
+                            
+                            <h:outputLabel value="#{msg['cash1']} #{infoPM.roundNrMinusOne}"/>
+                            <h:outputLabel value="#{infoPM.balance2}">
+                                <f:convertNumber type="currency"  maxFractionDigits="0" currencySymbol="€" locale="#{languageBean.language}"/>
+                            </h:outputLabel>
+                            <h:outputLabel value=" "/>
+                            <h:outputLabel value=" "/>
+
+                            <h:outputLabel value="#{msg['cash2']}"/>
+                            <h:outputText value="#{infoPM.block1}">
+                                <f:convertNumber type="currency"  maxFractionDigits="0" currencySymbol="€" locale="#{languageBean.language}"/>
+                            </h:outputText>
+                            <h:outputLabel value=" "/>
+                            <h:outputLabel value=" "/>
+
+                            <h:outputLabel value=" "/>
+                            <h:outputLabel value=" "/>
+                            <h:outputLabel value="#{msg['cash3']}"/>
+                            <h:outputLabel value="#{infoPM.sales_income}">
+                                <f:convertNumber type="currency"  maxFractionDigits="0" currencySymbol="€" locale="#{languageBean.language}"/>
+                            </h:outputLabel>
+
+                            <h:outputLabel value=" "/>
+                            <h:outputLabel value=" "/>
+                            <h:outputLabel value="#{msg['cash4']}"/>
+                            <h:outputLabel value="#{infoPM.variable_order_costs}">
+                                <f:convertNumber type="currency"  maxFractionDigits="0" currencySymbol="€" locale="#{languageBean.language}"/>
+                            </h:outputLabel>
+
+                            <h:outputLabel value=" "/>
+                            <h:outputLabel value=" "/>
+                            <h:outputLabel value="#{msg['cash5']}"/>
+                            <h:outputLabel value="#{infoPM.storage_cost}">
+                                <f:convertNumber type="currency"  maxFractionDigits="0" currencySymbol="€" locale="#{languageBean.language}"/>
+                            </h:outputLabel>
+
+                            <h:outputLabel value=" "/>
+                            <h:outputLabel value=" "/>
+                            <h:outputLabel value=" "/>
+                            <h:outputLabel value=" "/>
+
+                            <h:outputLabel value="#{msg['cash6']}"/>
+                            <h:outputLabel value="#{infoPM.block2}">
+                                <f:convertNumber type="currency"  maxFractionDigits="0" currencySymbol="€" locale="#{languageBean.language}"/>
+                            </h:outputLabel>
+                            <h:outputLabel value=" "/>
+                            <h:outputLabel value=" "/>
+
+                            <h:outputLabel value=" "/>
+                            <h:outputLabel value=" "/>
+                            <h:outputLabel value="#{msg['cash7']}"/>
+                            <h:outputLabel value="#{infoPM.costs_sal_ovt}">
+                                <f:convertNumber type="currency"  maxFractionDigits="0" currencySymbol="€" locale="#{languageBean.language}"/>
+                            </h:outputLabel>
+
+                            <h:outputLabel value=" "/>
+                            <h:outputLabel value=" "/>
+                            <h:outputLabel value="#{msg['cash8']}"/>
+                            <h:outputLabel value="#{infoPM.costs_qm_measure}">
+                                <f:convertNumber type="currency"  maxFractionDigits="0" currencySymbol="€" locale="#{languageBean.language}"/>
+                            </h:outputLabel>
+
+                            <h:outputLabel value=" "/>
+                            <h:outputLabel value=" "/>
+                            <h:outputLabel value="#{msg['cash9']}"/>
+                            <h:outputLabel value="#{infoPM.costs_new_comp}">
+                                <f:convertNumber type="currency"  maxFractionDigits="0" currencySymbol="€" locale="#{languageBean.language}"/>
+                            </h:outputLabel>
+
+                            <h:outputLabel value=" "/>
+                            <h:outputLabel value=" "/>
+                            <h:outputLabel value="#{msg['cash10']}"/>
+                            <h:outputText value="#{infoPM.work_climinv}">
+                                <f:convertNumber type="currency"  maxFractionDigits="0" currencySymbol="€" locale="#{languageBean.language}"/>
+                            </h:outputText>
+
+
+                            <h:outputLabel value=" "/>
+                            <h:outputLabel value=" "/>
+                            <h:outputLabel value=" "/>
+                            <h:outputLabel value=" "/>
+
+                            <h:outputLabel value="#{msg['cash11']}"/>
+                            <h:outputLabel value="#{infoPM.block3}">
+                                <f:convertNumber type="currency"  maxFractionDigits="0" currencySymbol="€" locale="#{languageBean.language}"/>
+                            </h:outputLabel>
+                            <h:outputLabel value=" "/>
+                            <h:outputLabel value=" "/>
+
+                            <h:outputLabel value=" "/>
+                            <h:outputLabel value=" "/>
+                            <h:outputLabel value="#{msg['cash12']}"/>
+                            <h:outputLabel value="#{infoPM.income_conv_sale}">
+                                <f:convertNumber type="currency"  maxFractionDigits="0" currencySymbol="€" locale="#{languageBean.language}"/>
+                            </h:outputLabel>
+
+                            <h:outputLabel value=" "/>
+                            <h:outputLabel value=" "/>
+                            <h:outputLabel value="#{msg['cash13']}"/>
+                            <h:outputLabel value="#{infoPM.it_costs}">
+                                <f:convertNumber type="currency"  maxFractionDigits="0" currencySymbol="€" locale="#{languageBean.language}"/>
+                            </h:outputLabel>
+
+                            <h:outputLabel value=" "/>
+                            <h:outputLabel value=" "/>
+                            <h:outputLabel value="#{msg['cash14']}"/>
+                            <h:outputLabel value="#{infoPM.costs_conv}">
+                                <f:convertNumber type="currency"  maxFractionDigits="0" currencySymbol="€" locale="#{languageBean.language}"/>
+                            </h:outputLabel>
+
+                            <h:outputLabel value=" "/>
+                            <h:outputLabel value=" "/>
+                            <h:outputLabel value="#{msg['cash15']}"/>
+                            <h:outputLabel value="#{infoPM.costs_new}">
+                                <f:convertNumber type="currency"  maxFractionDigits="0" currencySymbol="€" locale="#{languageBean.language}"/>
+                            </h:outputLabel>
+
+                            <h:outputLabel value=" "/>
+                            <h:outputLabel value=" "/>
+                            <h:outputLabel value=" "/>
+                            <h:outputLabel value=" "/>
+
+                            <h:outputLabel value="#{msg['cash16']}"/>
+                            <h:outputLabel value="#{infoPM.block4}">
+                                <f:convertNumber type="currency"  maxFractionDigits="0" currencySymbol="€" locale="#{languageBean.language}"/>
+                            </h:outputLabel>
+                            <h:outputLabel value=" "/>
+                            <h:outputLabel value=" "/>
+
+                            <h:outputLabel value=" "/>
+                            <h:outputLabel value=" "/>
+                            <h:outputLabel value="#{msg['cash17']}"/>
+                            <h:outputLabel value="#{infoPM.costs_usd}">
+                                <f:convertNumber type="currency"  maxFractionDigits="0" currencySymbol="€" locale="#{languageBean.language}"/>
+                            </h:outputLabel>
+
+                            <h:outputLabel value=" "/>
+                            <h:outputLabel value=" "/>
+                            <h:outputLabel value="#{msg['cash18']}"/>
+                            <h:outputLabel value="#{infoPM.costs_abc}">
+                                <f:convertNumber type="currency"  maxFractionDigits="0" currencySymbol="€" locale="#{languageBean.language}"/>
+                            </h:outputLabel>
+
+                            <h:outputLabel value=" "/>
+                            <h:outputLabel value=" "/>
+                            <h:outputLabel value=" "/>
+                            <h:outputLabel value=" "/>
+
+                            <h:outputLabel value="#{msg['cash19']}"/>
+                            <h:outputLabel value="#{infoPM.deposit_interest}">
+                                <f:convertNumber type="currency"  maxFractionDigits="0" currencySymbol="€" locale="#{languageBean.language}"/>
+                            </h:outputLabel>
+                            <h:outputLabel value=" "/>
+                            <h:outputLabel value=" "/>
+
+                            <h:outputLabel value="#{msg['cash20']} #{infoPM.roundNrMinusOne}"/>
+                            <h:outputLabel value="#{infoPM.balance1}">
+                                <f:convertNumber type="currency"  maxFractionDigits="0" currencySymbol="€" locale="#{languageBean.language}"/>
+                            </h:outputLabel>
+                            <h:outputLabel value=" "/>
+                            <h:outputLabel value=" "/>
+
+
+
+                        </p:panelGrid>
+                    </p:fieldset>
+
+
+                </f:view>
+
+            </ui:define>
+        </ui:composition>
+
+    </body>
+</html>

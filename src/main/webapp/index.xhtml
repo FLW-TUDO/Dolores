@@ -1,0 +1,109 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core">
+    <h:head>
+
+        <f:event type="preRenderView" listener="#{languageBean.init}" />
+        <link rel="icon" type="image/ico" href="resources/favicon.ico"/>
+        <title>Dolores</title>
+
+    </h:head>
+    <h:body style="background-image: url('resources/img/background/hg2.jpg');">
+
+        <f:view locale="#{languageBean.locale}">
+
+            <f:facet name="last">
+                <h:outputStylesheet library="css" name="errorFix.css"  />
+            </f:facet>
+
+            <div id="wrapper" style="width: 255px ;
+                 margin-left: auto ;
+                 margin-right: auto ;">
+                <p:panel style="position: absolute;
+                         top: 20%;
+                         "  id="grid">
+                    <!--<h1 align="center"><h:outputText value="#{msg['createGame.otSpielstart']}" style=" "/></h1>-->
+                    <p:graphicImage value="resources/img/dolores_logo_cropped.png" style="width: 195px;
+                                    padding-bottom: 20px;"/>
+
+
+                    <h:form>
+
+
+
+                        <h:panelGrid  columns="1"  >
+
+
+
+                            <p:button value="#{msg['index.neu_szenario']}" outcome="/users/newScenario.xhtml?faces-redirect=true"  style="margin-left:auto;margin-right:auto; width: 189px;"/>
+
+                            <p:button value="#{msg['index.laden']}" outcome="/users/loadGame.xhtml?faces-redirect=true" style="margin-left:auto;margin-right:auto; width: 189px;" />
+
+
+
+                            <br/>
+
+                            <h:form id="langauge_form" >
+
+                                <!--
+                                <div style="margin-left: 40px;
+                                     margin-right: auto;
+                                     margin-top: 20px;" >
+                                    <p:commandLink style="font-size: 14px;" action="#{languageBean.changeLanguage('de')}" value="Deutsch | " />  
+                                    <p:commandLink style="font-size: 14px;"  action="#{languageBean.changeLanguage('en')}" value=" English" />
+                                </div>
+                                -->
+                                <h:panelGrid columns="1">
+
+
+                                    <h:selectOneMenu value="#{languageBean.localeCode}" onchange="submit()"
+                                                     valueChangeListener="#{languageBean.countryLocaleCodeChanged}">
+                                        <f:selectItems value="#{languageBean.countriesInMap}" /> 
+                                    </h:selectOneMenu>
+
+                                </h:panelGrid>
+
+                            </h:form>
+                        </h:panelGrid>
+                        <br/>
+
+
+
+
+
+
+
+
+
+
+
+
+                    </h:form> 
+                </p:panel>
+
+
+
+
+
+
+
+            </div>
+
+            <div>
+                <h:link outcome="admin/index.xhtml" value="#{msg['index.admin']}" />
+            </div>
+            
+            <div style="position: relative; bottom: 0; right: 0;">
+                <p>Version 1.4.4</p>
+            </div>
+
+
+
+        </f:view>
+
+    </h:body>
+</html>
+

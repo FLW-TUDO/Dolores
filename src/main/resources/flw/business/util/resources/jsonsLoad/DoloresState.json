@@ -1,0 +1,403 @@
+{ "flw.business.core.DoloresState" : { "environmentVersion" : 1,
+      "id" : 1390,
+      "loadable" : false,
+      "pointInTime" : 1375342758840,
+      "propVariables" : [ { "property" : [ { "@name" : "not_transported_pallets_en",
+                  "@value" : "0"
+                },
+                { "@name" : "stock_value_wv_100104",
+                  "@value" : "0.0"
+                },
+                { "@name" : "modul_order_amount",
+                  "@value" : "True"
+                },
+                { "@name" : "stock_value_wv_100103",
+                  "@value" : "0.0"
+                },
+                { "@name" : "stock_value_wv_100102",
+                  "@value" : "0.0"
+                },
+                { "@name" : "stock_value_wv_100101",
+                  "@value" : "0.0"
+                },
+                { "@name" : "lateJobCount",
+                  "@value" : "0"
+                },
+                { "@name" : "workload_workers_la",
+                  "@value" : "16.121399176954732"
+                },
+                { "@name" : "pallets_transported_en",
+                  "@value" : "0"
+                },
+                { "@name" : "not_transported_pallets_wv",
+                  "@value" : "0"
+                },
+                { "@name" : "workload_conveyors_en",
+                  "@value" : "0.0"
+                },
+                { "@name" : "employee_count_ve",
+                  "@value" : "2"
+                },
+                { "@name" : "pallets_transported_wv",
+                  "@value" : "118"
+                },
+                { "@name" : "stock_value_la_100104",
+                  "@value" : "29250.0"
+                },
+                { "@name" : "stock_value_la_100103",
+                  "@value" : "29160.0"
+                },
+                { "@name" : "stock_value_la_100102",
+                  "@value" : "3410.0"
+                },
+                { "@name" : "stock_value_la_100101",
+                  "@value" : "6300.0"
+                },
+                { "@name" : "income_conveyor_sale",
+                  "@value" : "0"
+                },
+                { "@name" : "ovt_la",
+                  "@value" : "0"
+                },
+                { "@name" : "not_transported_pallets_wk",
+                  "@value" : "0"
+                },
+                { "@name" : "costs_new_employees",
+                  "@value" : "0"
+                },
+                { "@name" : "workload_workers_en",
+                  "@value" : "0.0"
+                },
+                { "@name" : "stock_value",
+                  "@value" : "68120"
+                },
+                { "@name" : "strategy_incoming",
+                  "@value" : "0"
+                },
+                { "@name" : "current_order_costs",
+                  "@value" : "77905"
+                },
+                { "@name" : "pallets_transported_wk",
+                  "@value" : "0"
+                },
+                { "@name" : "workload_workers_wv",
+                  "@value" : "9.44944944944945"
+                },
+                { "@name" : "pmax",
+                  "@value" : "20.0"
+                },
+                { "@name" : "overall_reclamation_percentage",
+                  "@value" : "0"
+                },
+                { "@name" : "costs_abc",
+                  "@value" : "0"
+                },
+                { "@name" : "ovt_en",
+                  "@value" : "0"
+                },
+                { "@name" : "overall_reclamation_w_pallets",
+                  "@value" : "0"
+                },
+                { "@name" : "workload_workers_wk",
+                  "@value" : "0.0"
+                },
+                { "@name" : "ovt_wv",
+                  "@value" : "0"
+                },
+                { "@name" : "company_value",
+                  "@value" : "273905.0"
+                },
+                { "@name" : "freeStorageSpace",
+                  "@value" : "2736"
+                },
+                { "@name" : "unit_security_devices_used",
+                  "@value" : "1"
+                },
+                { "@name" : "ovt_wk",
+                  "@value" : "0"
+                },
+                { "@name" : "pallets_transported_la_in",
+                  "@value" : "118"
+                },
+                { "@name" : "modul_safety_stock",
+                  "@value" : "True"
+                },
+                { "@name" : "not_transported_pallets_ve",
+                  "@value" : "0"
+                },
+                { "@name" : "pallets_transported_ve",
+                  "@value" : "0"
+                },
+                { "@name" : "costs_repair",
+                  "@value" : "0.0"
+                },
+                { "@name" : "workload_conveyors_ve",
+                  "@value" : "0.0"
+                },
+                { "@name" : "overall_modul_costs",
+                  "@value" : "1650"
+                },
+                { "@name" : "order_amount",
+                  "@value" : "0"
+                },
+                { "@name" : "accurate_finished_jobs",
+                  "@value" : "0"
+                },
+                { "@name" : "workload_workers_ve",
+                  "@value" : "0.0"
+                },
+                { "@name" : "overall_reclamation_e_la",
+                  "@value" : "0"
+                },
+                { "@name" : "modul_safety_stock_costs",
+                  "@value" : "200"
+                },
+                { "@name" : "overall_reclamation_w_retrieval",
+                  "@value" : "0"
+                },
+                { "@name" : "not_transported_pallets_la_in",
+                  "@value" : "0"
+                },
+                { "@name" : "overall_reclamation_damaged",
+                  "@value" : "0"
+                },
+                { "@name" : "sales_income_100104",
+                  "@value" : "0.0"
+                },
+                { "@name" : "sales_income_100103",
+                  "@value" : "0.0"
+                },
+                { "@name" : "ovt_ve",
+                  "@value" : "0"
+                },
+                { "@name" : "sales_income_100102",
+                  "@value" : "0.0"
+                },
+                { "@name" : "costs_round",
+                  "@value" : "14688.0"
+                },
+                { "@name" : "satisfaction",
+                  "@value" : "0.0"
+                },
+                { "@name" : "sales_income_100101",
+                  "@value" : "0.0"
+                },
+                { "@name" : "overall_reclamation_e_en",
+                  "@value" : "0"
+                },
+                { "@name" : "modul_reorder_level_costs",
+                  "@value" : "200"
+                },
+                { "@name" : "last_periode",
+                  "@value" : "15"
+                },
+                { "@name" : "late_finished_jobs_pallet_count",
+                  "@value" : "0"
+                },
+                { "@name" : "strategy_storage",
+                  "@value" : "0"
+                },
+                { "@name" : "stock_value_la",
+                  "@value" : "68120"
+                },
+                { "@name" : "sales_income",
+                  "@value" : "0"
+                },
+                { "@name" : "game_state",
+                  "@value" : "ok"
+                },
+                { "@name" : "repair_duration",
+                  "@value" : "0"
+                },
+                { "@name" : "overall_consumption",
+                  "@value" : "0"
+                },
+                { "@name" : "modul_look_in_storage",
+                  "@value" : "True"
+                },
+                { "@name" : "stock_value_ve_100104",
+                  "@value" : "0.0"
+                },
+                { "@name" : "accountbalance",
+                  "@value" : "413476.8084"
+                },
+                { "@name" : "modul_reorder_level",
+                  "@value" : "True"
+                },
+                { "@name" : "stock_value_en",
+                  "@value" : "0"
+                },
+                { "@name" : "stock_value_ve_100103",
+                  "@value" : "0.0"
+                },
+                { "@name" : "itcosts",
+                  "@value" : "1300"
+                },
+                { "@name" : "work_climate_invest",
+                  "@value" : "100"
+                },
+                { "@name" : "stock_value_ve_100102",
+                  "@value" : "0.0"
+                },
+                { "@name" : "conveyor_count_la",
+                  "@value" : "2"
+                },
+                { "@name" : "stock_value_ve_100101",
+                  "@value" : "0.0"
+                },
+                { "@name" : "leq",
+                  "@value" : "0"
+                },
+                { "@name" : "modul_status_report",
+                  "@value" : "True"
+                },
+                { "@name" : "stock_value_wv",
+                  "@value" : "0"
+                },
+                { "@name" : "not_transported_pallets_la_out",
+                  "@value" : "0"
+                },
+                { "@name" : "pallets_delivery_prep",
+                  "@value" : "0"
+                },
+                { "@name" : "conveyor_count_en",
+                  "@value" : "2"
+                },
+                { "@name" : "pallets_not_in_storage",
+                  "@value" : "0"
+                },
+                { "@name" : "stock_value_wk",
+                  "@value" : "0"
+                },
+                { "@name" : "modul_status_report_costs",
+                  "@value" : "500"
+                },
+                { "@name" : "employee_count_la",
+                  "@value" : "2"
+                },
+                { "@name" : "pallets_transported_la_out",
+                  "@value" : "0"
+                },
+                { "@name" : "late_finished_jobs_pallet_count_100104",
+                  "@value" : "0"
+                },
+                { "@name" : "late_finished_jobs_pallet_count_100103",
+                  "@value" : "0"
+                },
+                { "@name" : "late_finished_jobs_pallet_count_100102",
+                  "@value" : "0"
+                },
+                { "@name" : "overall_reclamation_e_ve",
+                  "@value" : "0"
+                },
+                { "@name" : "late_finished_jobs_pallet_count_100101",
+                  "@value" : "0"
+                },
+                { "@name" : "order_count",
+                  "@value" : "0"
+                },
+                { "@name" : "new_jobs",
+                  "@value" : "7"
+                },
+                { "@name" : "costs_usd",
+                  "@value" : "0.0"
+                },
+                { "@name" : "employee_count_en",
+                  "@value" : "2"
+                },
+                { "@name" : "current_ordered_pallets",
+                  "@value" : "380"
+                },
+                { "@name" : "deposit_interest",
+                  "@value" : "8107.3884"
+                },
+                { "@name" : "employee_count_wv",
+                  "@value" : "2"
+                },
+                { "@name" : "f_control_we",
+                  "@value" : "1.0"
+                },
+                { "@name" : "costs_qualification_measure",
+                  "@value" : "0"
+                },
+                { "@name" : "f_control_wa",
+                  "@value" : "1.0"
+                },
+                { "@name" : "strategy_outgoing",
+                  "@value" : "3"
+                },
+                { "@name" : "employee_count_wk",
+                  "@value" : "2"
+                },
+                { "@name" : "stock_value_wk_100104",
+                  "@value" : "0.0"
+                },
+                { "@name" : "roundnumber",
+                  "@value" : "3"
+                },
+                { "@name" : "stock_value_wk_100103",
+                  "@value" : "0.0"
+                },
+                { "@name" : "stock_value_wk_100102",
+                  "@value" : "0.0"
+                },
+                { "@name" : "overall_reclamation_e_transport",
+                  "@value" : "0"
+                },
+                { "@name" : "modul_order_amount_costs",
+                  "@value" : "450"
+                },
+                { "@name" : "stock_value_wk_100101",
+                  "@value" : "0.0"
+                },
+                { "@name" : "stock_value_ve",
+                  "@value" : "0"
+                },
+                { "@name" : "stock_value_en_100104",
+                  "@value" : "0.0"
+                },
+                { "@name" : "stock_value_en_100103",
+                  "@value" : "0.0"
+                },
+                { "@name" : "modul_look_in_storage_costs",
+                  "@value" : "300"
+                },
+                { "@name" : "stock_value_en_100102",
+                  "@value" : "0.0"
+                },
+                { "@name" : "stock_value_en_100101",
+                  "@value" : "0.0"
+                },
+                { "@name" : "income_round",
+                  "@value" : "8107.3884"
+                },
+                { "@name" : "not_transported_pallets_la",
+                  "@value" : "0"
+                },
+                { "@name" : "service_level",
+                  "@value" : "0.0"
+                },
+                { "@name" : "late_finished_jobs",
+                  "@value" : "0"
+                },
+                { "@name" : "pallets_transported_la",
+                  "@value" : "0"
+                },
+                { "@name" : "conveyor_count_ve",
+                  "@value" : "2"
+                },
+                { "@name" : "overall_reclamation_w_delivered",
+                  "@value" : "0"
+                },
+                { "@name" : "accurate_delivered_pallets",
+                  "@value" : "0"
+                },
+                { "@name" : "workload_conveyors_la",
+                  "@value" : "0.0"
+                },
+                { "@name" : "storage_cost",
+                  "@value" : "57.0"
+                }
+              ] } ],
+      "roundNumber" : 3
+    } }

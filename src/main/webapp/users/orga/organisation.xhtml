@@ -1,0 +1,288 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <body>
+        <ui:composition template="/./templates/folderTemplate.xhtml">
+            <ui:define name="content">
+                <h:form id="formId">
+                    <p:commandButton type="submit" style="background:transparent; border:none; color:transparent;" update=":formId"/>
+                    <p:graphicImage value="./../../resources/img/organisation#{ImagePm.localeStringToLowercase}" styleClass="headerImg" />
+
+                    <p:growl id="msg" />  
+                    
+                    <p:fieldset  styleClass="tri">
+
+                        <h:outputLabel value="#{msg['orga.wareneingang']}" styleClass="hh1" />
+
+                        <br/>
+                        <br/>
+                        <h:outputLabel value="#{msg['orga.stratKont']}" styleClass="hh2" />
+<br/><br/>
+                        <p:selectOneRadio  layout="pageDirection" value="#{orgaPM.palletControlFactor}" >
+
+                            <f:selectItem itemValue="0.0" itemLabel="#{msg['orga.controlInc1']}"/>
+                            <f:selectItem itemValue="0.1" itemLabel="#{msg['orga.controlInc2']}"/>
+                            <f:selectItem itemValue="0.2" itemLabel="#{msg['orga.controlInc3']}"/>
+                            <f:selectItem itemValue="0.5" itemLabel="#{msg['orga.controlInc4']}"/>
+                            <f:selectItem itemValue="1.0" itemLabel="#{msg['orga.controlInc5']}"/>
+                            <p:ajax update="formId:msg"
+                                    listener="#{orgaPM.ajaxUpdateIncomingOrganisationPalletControl()}" />  
+                        </p:selectOneRadio>
+
+<br/>
+                        <br/>
+
+                        <br/>
+
+
+
+                        <h:outputLabel value="#{msg['orga.time']}" styleClass="hh2" />
+                        <br/>
+                        <br/>
+
+                        <h:outputText value="#{msg['orga.time1']}"/>
+                        <br/>
+                        <h:outputText value="#{msg['orga.time2']}"/>
+
+                        <br/>
+                        <br/>
+                        <br/><br/>
+                        <br/>
+                        <h:outputLabel value="#{msg['orga.sicherheit']}" styleClass="hh2" />
+                        <br/>
+                        <br/>
+                        <p:selectOneRadio layout="pageDirection" value="#{orgaPM.securityDeviceUsed}">
+                            <f:selectItem itemValue="True" itemLabel="#{msg['orga.sicherheit1']}"/>
+                            <f:selectItem itemValue="False" itemLabel="#{msg['orga.sicherheit2']}"/>
+                            <p:ajax update="formId:msg"
+                                    listener="#{orgaPM.ajaxUpdateIncomingOrganisationSecurity()}" />  
+                        </p:selectOneRadio>
+                        <br/>
+                        <h:outputText value="#{msg['orga.costperpal']}"/><br/>
+                        <h:outputText value="#{msg['orga.timeperpal1']}"/><br/>
+                        <h:outputText value="#{msg['orga.timeperpal2']}"/>
+                        <br/>
+                        <br/>
+
+                        <!--<p:button value="Zurück" outcome="/orgaPage"/>-->
+                    </p:fieldset>
+
+
+
+                    <p:fieldset  styleClass="tri">
+
+                        <h:outputText value="#{msg['orga.lager']}" styleClass="hh1" />
+                        <br/>
+                        <br/>
+                        
+                        <p:dialog id="abc_resultId" header="#{msg['abc2.head']}" widgetVar="abc_result">
+
+
+                            <p:panelGrid columns="3" >
+                                <h:outputText value="#{msg['abc2.1']}"></h:outputText>
+                                <h:outputText value="#{msg['abc2.2']}"></h:outputText>
+                                <h:outputText value="#{msg['abc2.3']}"></h:outputText>
+
+                                <h:outputText value="100101"></h:outputText>
+                                <h:outputText value="#{msg['global.auspuff']}"></h:outputText>
+                                <h:outputText value="C"></h:outputText>
+
+                                <h:outputText value="100102"></h:outputText>
+                                <h:outputText value="#{msg['global.bremse']}"></h:outputText>
+                                <h:outputText value="B"></h:outputText>
+
+                                <h:outputText value="100103"></h:outputText>
+                                <h:outputText value="#{msg['global.leuchte']}"></h:outputText>
+                                <h:outputText value="C"></h:outputText>
+
+                                <h:outputText value="100104"></h:outputText>
+                                <h:outputText value="#{msg['global.daempfer']}"></h:outputText>
+                                <h:outputText value="A"></h:outputText>
+
+                            </p:panelGrid>
+
+                            <p:commandButton value="Ok" oncomplete="abc_result.hide()" update=":formId"/>
+                        </p:dialog>
+       
+                        
+                        <p:confirmDialog id="abc_analyseId" header="#{msg['abc1.head']}" widgetVar="abc_analyse" >
+
+                            <f:facet name="message">
+                                <p>#{msg['abc1.1']}</p>
+
+                                <p>#{msg['abc1.2']}
+                                </p>
+
+                                <p> #{msg['abc1.3']} </p>
+                                <br/>
+                                <p>#{msg['abc1.4']}</p>
+                            </f:facet>
+                            <p:commandButton value="#{msg['global.dlgSubmit']}" action="#{orgaPM.setAbcAnalyse(true)}"
+                                             oncomplete="abc_analyse.hide()" update=":formId"/>
+
+                            <p:commandButton value="#{msg['global.dlgCancel']}" onclick="abc_analyse.hide();" type="button" />
+                        </p:confirmDialog>
+
+                        <p:confirmDialog id="abc_zoneId" header="#{msg['abc3.head']}" widgetVar="abc_zone">
+
+                            <f:facet name="message">
+                                <p>#{msg['abc3.1']}</p>
+
+                                <p>#{msg['abc3.2']}
+                                </p>
+
+                                <p> #{msg['abc3.3']}
+                                    #{msg['abc3.4']}</p>
+                                <br/>
+                                <p>#{msg['abc3.5']}</p>
+                            </f:facet>
+                            <p:commandButton value="#{msg['global.dlgSubmit']}" action="#{orgaPM.doAbcZoning()}"
+                                             oncomplete="abc_zone.hide()" update=":formId"/>
+
+                            <p:commandButton value="#{msg['global.dlgCancel']}" onclick="abc_zone.hide();" type="button" />
+                        </p:confirmDialog>
+
+
+
+                        
+                         <h:outputText value="#{msg['orga.stratEin']}" styleClass="hh2"/>
+<br/><br/>
+                        <p:selectOneRadio id="stratIn"  layout="pageDirection" value="#{orgaPM.strategyIncoming}" >
+
+                            <f:selectItem itemValue="0" itemLabel="#{msg['orga.stratEin1']}"/>
+                            <f:selectItem itemValue="1" itemLabel="#{msg['orga.stratEin2']}"/>
+                            <p:ajax update="formId:msg"
+                                    listener="#{orgaPM.ajaxUpdateStrategyIncoming()}" />  
+                        </p:selectOneRadio>
+
+
+
+                        <br/>
+<br/>
+
+                       
+                        <h:outputText value="#{msg['orga.straPlace']}" styleClass="hh2" />
+<br/><br/>
+                        <p:selectOneRadio  layout="pageDirection" value="#{orgaPM.strategyStorage}" >
+
+                            <f:selectItem itemValue="0" itemLabel="#{msg['orga.straPlace1']}"/>
+                            <f:selectItem itemValue="1" itemLabel="#{msg['orga.straPlace2']}"/>
+                            <f:selectItem  itemDisabled="#{!orgaPM.zoneRdy}" itemValue="2" itemLabel="#{msg['orga.straPlace3']}"/>
+                            <p:ajax update="formId:msg"
+                                    listener="#{orgaPM.ajaxUpdateStrategyStorage()}" />  
+                        </p:selectOneRadio>
+
+
+                        <p:commandButton  value="#{msg['orga.btn1']}" oncomplete="abc_analyse.show()" disabled="#{orgaPM.abcAnalyse}" update=":formId:abc_analyseId"/>
+
+                        <br/>
+                        <p:commandButton value="#{msg['orga.btn2']}" oncomplete="abc_result.show()" disabled="#{!orgaPM.isAbcRdy}" update=":formId:abc_resultId" />
+
+                        <br/>
+                        <p:commandButton value="#{msg['orga.btn3']}" oncomplete="abc_zone.show()" disabled="#{!orgaPM.isAbcRdy}" update=":formId:abc_zoneId" />
+
+                        <br/>
+                        <br/>
+
+                        
+                        
+                        <h:outputText value="#{msg['orga.stratOut']}" styleClass="hh2" />
+                        <br/><br/>
+                        <p:selectOneRadio id="stratOut" layout="pageDirection" value="#{orgaPM.strategyOutgoing}" >
+
+                            <f:selectItem itemValue="0" itemLabel="#{msg['orga.stratOut1']}"/>
+                            <f:selectItem itemValue="1" itemLabel="#{msg['orga.stratOut2']}"/>
+                            <f:selectItem itemValue="2" itemLabel="#{msg['orga.stratOut3']}"/>
+                            <f:selectItem itemValue="3" itemLabel="#{msg['orga.stratOut4']}"/>
+                            <p:ajax update="formId:msg"
+                                    listener="#{orgaPM.ajaxUpdateStrategyOutgoing()}" />  
+                        </p:selectOneRadio>
+
+
+
+
+                        <br/><br/><br/>
+                        <!--
+                        <p:outputLabel value="Auslagerung" />
+                        <p:inputText value="#{orgaPM.debugStorage}" />
+                        <p:commandButton value="bestätigen" update="growl, formId:msg "/>
+                        -->
+
+                        
+                       
+                        <h:outputText value="#{msg['orga.kap']}" styleClass="hh2" />
+                        <br/><br/>
+                        <p:panelGrid  style="margin-bottom:10px" id="growl">
+
+                            <p:row> 
+                                <p:column>
+                                    <p:outputLabel value="#{msg['orga.kap1']}" /> 
+                                </p:column>
+                                <p:column>
+                                    <p:outputLabel  value="#{msg['orga.kap2']}" /> 
+                                </p:column>
+                            </p:row>                         
+                            <p:row>
+                                <p:column>
+                                    <p:inputText value="#{orgaPM.storageFactorPercentIn}" id="amount_in" style="width: 48px">
+                                        <f:validateLongRange minimum="0" maximum="100" />
+                                    </p:inputText>
+                                </p:column>
+                                
+                                <p:column>
+                                    <p:outputLabel id="txt5" value="#{orgaPM.storageFactorPercentOut}" />
+                                </p:column>
+                                
+                            </p:row>
+                        </p:panelGrid> 
+
+
+                    </p:fieldset>
+
+                    <p:fieldset  styleClass="tri">
+
+                        <h:outputText styleClass="hh1" value="#{msg['orga.ausgang']}" />
+                        <br/><br/>
+                        
+                        
+                        <h:outputText value="#{msg['orga.stratKont']}" styleClass="hh2"/>
+                        <br/><br/>
+                        <p:selectOneRadio layout="pageDirection" value="#{orgaPM.palletControlFactorWA}" >
+
+                            <f:selectItem itemValue="0.0" itemLabel="#{msg['orga.stratKont1']}"/>
+                            <f:selectItem itemValue="0.1" itemLabel="#{msg['orga.stratKont2']}"/>
+                            <f:selectItem itemValue="0.2" itemLabel="#{msg['orga.stratKont3']}"/>
+                            <f:selectItem itemValue="0.5" itemLabel="#{msg['orga.stratKont4']}"/>
+                            <f:selectItem itemValue="1.0" itemLabel="#{msg['orga.stratKont5']}"/>
+                            <p:ajax update="formId:msg"
+                                    listener="#{orgaPM.ajaxUpdateOutgoingOranisation()}" />  
+                        </p:selectOneRadio>
+
+                        <br/><br/>
+                        
+                        <h:outputText value="#{msg['orga.times']}" />
+<br/><br/>
+                        <h:outputText value="#{msg['orga.times1']}"/>
+                        <br/>
+                        <h:outputText value="#{msg['orga.times2']}"/>
+
+                        <br/>
+
+                        <br/>
+
+
+
+
+                    </p:fieldset>
+
+                </h:form>
+            </ui:define>
+        </ui:composition>
+
+    </body>
+</html>

@@ -1,0 +1,20 @@
+{ "flw.business.store.ConveyorDynamics" : { "conditionPercentage" : 82,
+      "conveyor" : { "capacity" : 720,
+          "maintenanceCost" : 70,
+          "name" : "4Rad Gas-Gabelstapler",
+          "needsForkliftPermit" : true,
+          "price" : 65000,
+          "speed" : 5.2999999999999998,
+          "timeToDelivery" : 3,
+          "timeToRepair" : 6000,
+          "useInStorage" : true,
+          "conveyorId" : 5
+        },
+      "currentValue" : 44200.5,
+      "maintenanceEnabled" : true,
+      "overhaul" : false,
+      "overhaul_costs" : 700,
+      "periodBought" : 1,
+      "process" : 2,
+      "status" : 0
+    } }

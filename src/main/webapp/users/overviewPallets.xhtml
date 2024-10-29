@@ -1,0 +1,67 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <body>
+        <ui:composition template="./../templates/mainTemplate.xhtml">
+            <ui:define name="contentMain">
+                <p:graphicImage value="#{stylePM.image}" style="border-top-right-radius: 4px;
+                                width: 849px;" />
+                
+                <br/>
+                <br/>
+
+                <p:fieldset legend="#{msg['palletO.head']}" style="width: 800px;" >
+                <br/>
+
+                <p:panelGrid columns="8" >
+                    <h:outputText value="  "/>
+                    <h:outputText value="#{msg['global.en']}"/>
+                    <h:outputText value="#{msg['global.wv']}"/>
+                    <h:outputText value="#{msg['global.laEin']}"/>
+                    <h:outputText value="#{msg['global.la']}"/>
+                    <h:outputText value="#{msg['global.laAus']}"/>
+                    <h:outputText value="#{msg['global.wk']}"/>
+                    <h:outputText value="#{msg['global.ve']}"/>
+
+                    <h:outputText value="#{msg['palletO.transported']}"/>
+                    <h:outputText value="#{gameInfoPM.palletOverviewTransported[0]}"/>
+                    <h:outputText value="#{gameInfoPM.palletOverviewTransported[1]}"/>
+                    <h:outputText value="#{gameInfoPM.palletOverviewTransported[5]}"/>
+                    <h:outputText value="  "/>
+                    <h:outputText value="#{gameInfoPM.palletOverviewTransported[6]}"/>
+                    <h:outputText value="#{gameInfoPM.palletOverviewTransported[3]}"/>
+                    <h:outputText value="#{gameInfoPM.palletOverviewTransported[4]}"/>
+
+                    <h:outputText value="#{msg['palletO.notTransported']}"/>
+                    <h:outputText value="#{gameInfoPM.palletOverviewNotTransported[0]}"/>
+                    <h:outputText value="#{gameInfoPM.palletOverviewNotTransported[1]}"/>
+                    <h:outputText value="#{gameInfoPM.palletOverviewNotTransported[5]}"/>
+                    <h:outputText value="  "/>
+                    <h:outputText value="#{gameInfoPM.palletOverviewNotTransported[6]}"/>
+                    <h:outputText value="#{gameInfoPM.palletOverviewNotTransported[3]}"/>
+                    <h:outputText value="#{gameInfoPM.palletOverviewNotTransported[4]}"/>
+
+                </p:panelGrid>
+
+                <br/>
+
+                </p:fieldset>
+                
+
+
+                <!--<p:button value="Zurück ins Hauptmenü" outcome="main"/>-->
+            </ui:define>
+        </ui:composition>
+
+    </body>
+</html>
+
+
+
+

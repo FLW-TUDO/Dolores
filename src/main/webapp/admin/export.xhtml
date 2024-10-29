@@ -1,0 +1,35 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:h="http://java.sun.com/jsf/html"
+      >
+    <h:head>
+        <title>Export</title>
+    </h:head>
+    <h:body>
+        <h:form>
+            <p:dataTable var="obj" value="#{admPM.exports}">  
+                <p:column headerText="Runde">  
+                    <h:outputText value="#{obj.round}" />  
+                </p:column>  
+
+                <p:column headerText="Kontostand">  
+                    <h:outputText value="#{obj.accountbalance}" />  
+                </p:column>  
+
+                <p:column headerText="Kundenzufriedenheit">  
+                    <h:outputText value="#{obj.satisfaction}" />  
+                </p:column> 
+                
+                <p:column headerText="Zeitpunkt">  
+                    <h:outputText value="#{obj.time}" />  
+
+                </p:column>  
+
+
+            </p:dataTable>
+            <p:commandButton value="Back" onclick="history.back(); return false;"/>
+        </h:form>
+    </h:body>
+</html>
