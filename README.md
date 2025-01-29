@@ -13,7 +13,7 @@ This repository includes the
 1. Clone repository
 2. Adapt nginx.conf if necessary
 3. Update the ENVIRONMENT VARIABLES in the docker-compose.yaml (explanation in the next section)
-4. Run dolores with ```docker-compose up```
+4. Run dolores with ```sudo docker-compose up -d```
 
 ### ENVIRONMENT VARIABLES
 
@@ -45,14 +45,16 @@ If you want to run the server using SSL and have no valid certificate you can se
 
 1. Clone repository
 2. Remove SSL configuration from nginx.conf
-3. Start server with ```docker-compose up```
-4. Run certbot ```docker-compose run --rm certbot certonly --webroot --webroot-path /var/www/certbot/ -d example.org```
-5. Re-add SSL configuration in nginx.conf
+3. Start server with ```sudo docker-compose up -d```
+4. Run certbot ```sudo docker-compose run --rm certbot certonly --webroot --webroot-path /var/www/certbot/ -d example.org```
+5. Stop server with ```sudo docker-compose down```
+6. Re-add SSL configuration in nginx.conf
+7. Restart server with ```sudo docker-compose up -d```
 
 Certificate renewal
 
 Simply run
-```docker compose run --rm certbot renew```
+```sudo docker compose run --rm certbot renew```
 
 ## Docker Services Explanation
 
@@ -61,6 +63,14 @@ Simply run
 - db: runs a mongodb database used for storing all game data
 - watchtower: used for checking all running containers for updates
 - certbot (optional): used for creating custom SSL certificates (see section Setup with certbot)
+
+## Explore the containers & useful commands:
+
+```sudo docker compose up -d```: Starts all containers with a docker-compose.yaml configuration in -d detached mode
+```sudo docker compose down```: Stops all containers of a docker-compose.yaml
+```sudo docker images```: Shows the current images that are on the machine
+```sudo docker rmi x```: Remove an container with the id x
+```sudo docker ps```: Lists all running containers
 
 ## Useful Links
 
