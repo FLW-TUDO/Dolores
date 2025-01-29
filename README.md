@@ -14,6 +14,15 @@ This repository includes the
 2. Adapt nginx.conf if necessary
 3. Run dolores with ```docker-compose up```
 
+### SSL Setup
+
+If you want to use SSL with this project you need to specify the location of the key files in the SSL section of the nginx.conf as follows:
+
+```
+  ssl_certificate /path/to/log-bg.mb.tu-dortmund.de/fullchain.pem;
+  ssl_certificate_key /path/to/log-bg.mb.tu-dortmund.de/privkey.pem;
+```
+
 ### Setup with certbot
 
 1. Clone repository
