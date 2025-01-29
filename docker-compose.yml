@@ -23,7 +23,7 @@ services:
       - ./certbot/www:/var/www/certbot:ro
       - ./certbot/conf:/etc/letsencrypt:rw
   db:
-    image: mongo:bionic
+    image: mongo:latest
     restart: always
     environment:
       - MONGO_INITDB_ROOT_USERNAME=
