@@ -1,21 +1,33 @@
-# FLW Planspiel
+# FLW Planspiel / FLW Businessgame
 
-Dies ist das offizielle Repository für das neue FLW Planspiel.
+This is the official repository for the new FLW Businessgame [Link](http://log-bg.mb.tu-dortmund.de/).
+
+This repository includes the 
+- Dolores Backend, a spring boot application that implements the business logic of the game
+- Dolores Frontend, a vue frontend that serves as access point for user and admins
 
 ## Setup
 
-### Setup
+### Normal Setup
 
-1. SSL Server aus Nginx conf nehmen
-2. Server starten mit ```docker-compose up```
-3. ```docker-compose run --rm certbot certonly --webroot --webroot-path /var/www/certbot/ -d example.org```
-4. SSL Server wieder hinzufügen
+1. Clone repository
+2. Adapt nginx.conf if necessary
+3. Run dolores with ```docker-compose up```
 
-### Zertifikaterneuerung
+### Setup with certbot
 
+1. Clone repository
+2. Remove SSL configuration from nginx.conf
+3. Start server with ```docker-compose up```
+4. Run certbot ```docker-compose run --rm certbot certonly --webroot --webroot-path /var/www/certbot/ -d example.org```
+5. Re-add SSL configuration in nginx.conf
+
+### Certificate renewal
+
+Simply run
 ```docker compose run --rm certbot renew```
 
-### Hilfreiche Links
+### Useful Links
 
 [Docker+Nginx+SSL](https://mindsers.blog/post/https-using-nginx-certbot-docker/)
 
