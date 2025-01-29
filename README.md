@@ -66,11 +66,11 @@ Simply run
 
 ## Explore the containers & useful commands:
 
-```sudo docker compose up -d```: Starts all containers with a docker-compose.yaml configuration in -d detached mode
-```sudo docker compose down```: Stops all containers of a docker-compose.yaml
-```sudo docker images```: Shows the current images that are on the machine
-```sudo docker rmi x```: Remove an container with the id x
-```sudo docker ps```: Lists all running containers
+- ```sudo docker compose up -d```: Starts all containers with a docker-compose.yaml configuration in -d detached mode
+- ```sudo docker compose down```: Stops all containers of a docker-compose.yaml
+- ```sudo docker images```: Shows the current images that are on the machine
+- ```sudo docker rmi x```: Remove an container with the id x
+- ```sudo docker ps```: Lists all running containers
 
 ## Useful Links
 
